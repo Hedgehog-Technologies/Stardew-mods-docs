@@ -1,7 +1,7 @@
 ---
-title: "How Auto Forager Detects and Collects Items"
+title: "How Auto Forager Scans, Prioritizes, and Collects Items"
 sidebarTitle: "How It Works"
-description: "Learn how Auto Forager scans tiles around you each time you move, applies per-item toggles, respects tool requirements, and logs daily forage statistics."
+description: "Understand how Auto Forager scans your surroundings each step, prioritizes by distance, respects tool requirements, and logs daily forage totals."
 ---
 
 Understanding Auto Forager's mechanics helps you tune it for your playstyle and avoid surprises. Every time you take a step, the mod runs a scanning pass, builds a prioritized list of eligible items, applies your configured limits, and then collects them in order from nearest to farthest. Here is exactly how each part of that process works.
@@ -24,7 +24,7 @@ At the default radius of 2, the mod checks a 5×5 grid of tiles (your tile plus 
 
 To keep the game running smoothly, Auto Forager caps how many items it collects per step. By default, this limit **auto-scales** based on your radius using the formula:
 
-```
+```text
 Max interactions = 30 - (radius × 2)
 ```
 
@@ -44,7 +44,7 @@ This priority system means that if you walk along a path lined with trees and bu
 
 ## Daily Deduplication
 
-Auto Forager tracks every tile and object it has already interacted with today. If you walk past the same artifact spot, mushroom box, or berry bush multiple times in one day, it skips the interaction on subsequent passes. This prevents the mod from attempting to collect from already-harvested sources and avoids triggering any unintended repeat logic.
+Auto Forager remembers every tile location and every source it has already interacted with today. If you walk past the same artifact spot, mushroom box, or berry bush multiple times in one day, it skips the interaction on subsequent passes. This prevents the mod from attempting to collect from already-harvested sources and avoids triggering any unintended repeat interactions.
 
 The daily tracker resets automatically at the start of each new day, so everything is eligible again the next morning.
 
@@ -92,7 +92,7 @@ The Gatherer double-harvest check applies to ground forageables only (items spaw
 
 At the end of each in-game day, Auto Forager writes a summary to the SMAPI console log showing everything it collected, organized by category.
 
-```
+```text
 [Month Day, Year]:
 Total items foraged today: 47
 [12] Bushes:

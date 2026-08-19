@@ -1,7 +1,7 @@
 ---
 title: "Full Fishing Bar: Make Fishing Easier in Stardew Valley"
 sidebarTitle: "Overview"
-description: "Full Fishing Bar resizes the bobber bar in the fishing mini-game up to 100% of the track, making it trivially easy — or just a little easier — to catch every fish."
+description: "Full Fishing Bar resizes the fishing bobber bar from 10% to 100% of the track, with optional auto-hook. Reduce fishing difficulty or remove it entirely."
 ---
 
 Stardew Valley's fishing mini-game challenges you to hold a bobber bar over a moving fish icon for long enough to fill a catch meter. For some players that tension is enjoyable; for others it's a barrier — whether due to accessibility needs, hardware limitations, or simply wanting to focus on other parts of the game. Full Fishing Bar lets you choose exactly how large that bobber bar is, from a modest bump up to the full height of the track, so you stay in control of the difficulty.
@@ -16,7 +16,7 @@ Stardew Valley's fishing mini-game challenges you to hold a bobber bar over a mo
     Optionally have the game automatically trigger the hook the moment a fish nibbles, so you never miss the bite window. Controller rumble fires when auto-hook activates.
   </Card>
   <Card title="Cork Bobber Mode" icon="circle">
-    Restrict bar resizing to only activate when a Cork Bobber (item ID 695) is attached to your rod, turning the upgrade into a deliberate tool rather than a permanent change.
+    Restrict bar resizing to only activate when a Cork Bobber is attached to your rod, turning the upgrade into a deliberate tool rather than a permanent change.
   </Card>
   <Card title="Boss Fish Exception" icon="shield">
     Keep boss fish encounters at full difficulty even while the bar is enlarged for all other fish — preserving a meaningful challenge for the game's toughest catches.
@@ -45,10 +45,10 @@ Full Fishing Bar is built for accessibility and casual play. It occupies a usefu
 
 ## Auto-Hook and Controller Rumble
 
-When `AutoHook` is enabled, the mod monitors your rod every game tick. The moment a fish nibbles, it triggers the hook on your behalf — you never need to watch the screen and click in time. If you're playing with a controller, the mod fires a short rumble pulse (`0.95f` intensity, 200 ms) as tactile feedback when the auto-hook activates, so you know a fish has been caught even if you're looking away.
+When `AutoHook` is enabled, the mod monitors your rod every game tick. The moment a fish nibbles, it triggers the hook on your behalf — you never need to watch the screen and click in time. If you're playing with a controller, the mod fires a short rumble pulse as tactile feedback when the auto-hook activates, so you know a fish has been caught even if you're looking away.
 
 <Note>
-  Auto-Hook does not activate if your rod already has the Auto-Hook enchantment from the Enchanter's Bundle, since that enchantment handles the same behaviour natively.
+  Auto-Hook does not activate if your rod already has the Auto-Hook enchantment applied at the Forge, since that enchantment handles the same behaviour natively.
 </Note>
 
 ## Multiplayer

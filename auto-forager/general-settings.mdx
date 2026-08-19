@@ -16,6 +16,10 @@ Auto Forager stores its settings in a `config.json` file that lives at `Stardew 
   The master on/off switch for the entire mod. Set this to `false` to suspend all automatic foraging without uninstalling the mod. You can also toggle this at any time during play using the [keybind](/auto-forager/keybinds).
 </ParamField>
 
+<ParamField body="ToggleForagerKeybind" type="KeybindList" default="LeftAlt + H, RightAlt + H">
+  The keyboard or controller shortcut that toggles the mod on and off during play. Defaults to `LeftAlt + H` or `RightAlt + H` (either combo works). See the [Keybinds](/auto-forager/keybinds) page for full instructions on reassigning this shortcut.
+</ParamField>
+
 ## Radius and Distance
 
 <ParamField body="UsePlayerMagnetism" type="bool" default="false">
@@ -111,7 +115,7 @@ These flags control whether Auto Forager interacts with special objects that req
 ## Diagnostics
 
 <ParamField body="ElevateDebugLogs" type="bool" default="false">
-  When enabled, Auto Forager promotes its internal debug messages from TRACE level to DEBUG level, making them visible in the SMAPI console. Enable this when troubleshooting unexpected behavior or confirming that a specific item type is being detected. Leave it off during normal play to keep the console uncluttered.
+  When enabled, Auto Forager promotes its diagnostic log messages to a level that appears in the SMAPI console window. Enable this when troubleshooting unexpected behavior or confirming that a specific item type is being detected. Leave it off during normal play to keep the console output uncluttered.
 </ParamField>
 
 ## Example config.json

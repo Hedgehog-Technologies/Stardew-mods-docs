@@ -1,7 +1,7 @@
 ---
 title: "Full Fishing Bar Configuration Options and Settings"
 sidebarTitle: "Configuration"
-description: "Configure Full Fishing Bar's bobber bar size, auto-hook behavior, Cork Bobber restriction, boss fish exception, and master enable toggle via config.json or GMCM."
+description: "All five Full Fishing Bar settings explained: bar size percentage, auto-hook, Cork Bobber mode, boss fish exception, and the master enable toggle."
 ---
 
 Full Fishing Bar exposes five settings that let you dial in exactly how much the mod assists your fishing. You can change every setting either by editing the config file directly or through the in-game Generic Mod Config Menu (GMCM) UI — no restart required when using GMCM.
@@ -44,7 +44,7 @@ If you prefer the in-game UI, open the pause menu, select **Mod Settings**, and 
 </ParamField>
 
 <ParamField body="OnlyCorkBobber" type="bool" default="false">
-  When set to `true`, bar resizing only activates if a **Cork Bobber** (item ID `695`) is attached to your fishing rod. With no Cork Bobber equipped, the mini-game runs at vanilla difficulty regardless of `BarSizePercentageInt`.
+  When set to `true`, bar resizing only activates if a **Cork Bobber** is attached to your fishing rod. With no Cork Bobber equipped, the mini-game runs at vanilla difficulty regardless of `BarSizePercentageInt`.
 
   This turns the Cork Bobber from a minor quality-of-life item into a meaningful, intentional choice: equip it when you want easier fishing, leave it off when you want the challenge.
 </ParamField>
@@ -58,7 +58,7 @@ If you prefer the in-game UI, open the pause menu, select **Mod Settings**, and 
 <ParamField body="AutoHook" type="bool" default="false">
   When set to `true`, the mod automatically triggers the hook the moment a fish nibbles on your line — you never need to watch the screen and click (or press a button) in time. If you're using a controller, a short rumble pulse fires as tactile confirmation.
 
-  Auto-Hook does not activate if your rod already has the **Auto-Hook enchantment** applied, since the enchantment handles the same behaviour at the game level.
+  Auto-Hook does not activate if your rod already has the **Auto-Hook enchantment** applied at the Forge, since the enchantment handles the same behaviour at the game level.
 </ParamField>
 
 ## Example config.json
