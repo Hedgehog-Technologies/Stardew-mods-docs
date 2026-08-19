@@ -1,0 +1,124 @@
+---
+title: "How Auto Forager Detects and Collects Items"
+sidebarTitle: "How It Works"
+description: "Learn how Auto Forager scans tiles around you each time you move, applies per-item toggles, respects tool requirements, and logs daily forage statistics."
+---
+
+Understanding Auto Forager's mechanics helps you tune it for your playstyle and avoid surprises. Every time you take a step, the mod runs a scanning pass, builds a prioritized list of eligible items, applies your configured limits, and then collects them in order from nearest to farthest. Here is exactly how each part of that process works.
+
+## Radius Scanning
+
+Each time your character moves to a new tile, Auto Forager scans every tile within a square area centered on your position. The size of that area is controlled by the **Shake Distance** setting.
+
+| Setting | Value |
+|---|---|
+| Default radius | 2 tiles |
+| Minimum radius | 2 tiles |
+| Maximum radius | 10 tiles |
+
+At the default radius of 2, the mod checks a 5×5 grid of tiles (your tile plus 2 in every direction). Increasing the radius dramatically expands the area covered — a radius of 10 checks a 21×21 grid.
+
+**Player Magnetism mode**: Enable `UsePlayerMagnetism` to replace the fixed radius with your character's current magnetic item-pickup range. This radius scales with items and upgrades that expand your magnetism, such as the Glowstone Ring. When this mode is active, the `ShakeDistance` setting is ignored.
+
+## Interaction Limit
+
+To keep the game running smoothly, Auto Forager caps how many items it collects per step. By default, this limit **auto-scales** based on your radius using the formula:
+
+```
+Max interactions = 30 - (radius × 2)
+```
+
+This gives you 26 interactions at radius 2, 20 at radius 5, and 10 at the maximum radius of 10. The limit is always kept between 5 and 50.
+
+You can override the auto-scaling with a fixed value (5–50) using the `MaxInteractionsPerMove` config option. Set it to `0` (or leave it unset) to restore auto-scaling.
+
+<Note>
+  If Auto Forager finds more eligible items than the limit allows in a single step, the closest items are always collected first. Items beyond the limit are reconsidered on your next step.
+</Note>
+
+## Priority Order
+
+When multiple items fall within range on the same step, Auto Forager sorts them by distance before collecting. The item closest to your character is always processed first. Items at equal distance are processed in the order they appear when scanning the tile grid.
+
+This priority system means that if you walk along a path lined with trees and bushes, the items you pass closest to are handled before items further away — exactly as you would expect from a natural foraging path.
+
+## Daily Deduplication
+
+Auto Forager tracks every tile and object it has already interacted with today. If you walk past the same artifact spot, mushroom box, or berry bush multiple times in one day, it skips the interaction on subsequent passes. This prevents the mod from attempting to collect from already-harvested sources and avoids triggering any unintended repeat logic.
+
+The daily tracker resets automatically at the start of each new day, so everything is eligible again the next morning.
+
+## Tool Requirements
+
+Some forageables require specific tools to be present in your inventory before Auto Forager will attempt to collect them. These checks mirror what the game itself would require if you were interacting manually.
+
+<Tabs>
+  <Tab title="Hoe">
+    Required for digging up buried items when `RequireHoe` is enabled (on by default):
+    - Ginger
+    - Snow Yam
+    - Winter Root
+    - Artifact Spots
+    - Seed Spots
+
+    If you walk near these without a Hoe in your inventory, Auto Forager skips them and shows a brief HUD notification.
+  </Tab>
+  <Tab title="Any Tool">
+    Required for harvesting Moss when `RequireToolMoss` is enabled (on by default). Any tool in your inventory satisfies this requirement — a Pickaxe, Axe, Hoe, Watering Can, or Scythe all count.
+  </Tab>
+  <Tab title="Pan">
+    Required for collecting ore panning spots when `RequirePan` is enabled (on by default). You must have a Pan in your inventory for Auto Forager to process any active panning locations.
+  </Tab>
+</Tabs>
+
+You can disable each of these tool requirements independently in the config if you prefer Auto Forager to collect those items unconditionally.
+
+## Profession Bonuses
+
+Auto Forager fully respects Stardew Valley's foraging professions, giving you the same bonuses you would receive from collecting items manually.
+
+<Tip>
+  The **Botanist** profession is one of the strongest synergies with Auto Forager. Because Botanist upgrades all foraged items to Iridium quality automatically, every ground forageable, bush berry, and seasonal item Auto Forager collects for you arrives at maximum quality — with zero extra effort on your part.
+</Tip>
+
+| Profession | Effect |
+|---|---|
+| **Botanist** (Foraging level 10) | All foraged items are automatically Iridium quality |
+| **Gatherer** (Foraging level 5) | 20% chance to double ground-spawned forageables |
+
+The Gatherer double-harvest check applies to ground forageables only (items spawned as objects in the world). It does not apply to tree seeds, bush berries, or machine outputs.
+
+## Daily Statistics
+
+At the end of each in-game day, Auto Forager writes a summary to the SMAPI console log showing everything it collected, organized by category.
+
+```
+[Month Day, Year]:
+Total items foraged today: 47
+[12] Bushes:
+  - Salmonberry x 9
+  - Tea Leaves x 3
+[8] Forageables:
+  - Spring Onion x 5
+  - Daffodil x 3
+[18] Wild Trees:
+  - Acorn x 7
+  - Maple Seed x 6
+  - Pine Cone x 5
+[9] Fruit Trees:
+  - Apple x 4
+  - Cherry x 3
+  - Orange x 2
+```
+
+You can review this log at any time by opening your SMAPI console. The counts reset at the start of each new day.
+
+## Toggling Auto Forager On and Off
+
+Press **Left Alt + H** or **Right Alt + H** at any time while playing to toggle Auto Forager on or off. A brief HUD message confirms the new state. Your preference is saved to `config.json` and persists across sessions — if you turn it off before bed, it stays off when you relaunch the game.
+
+<Accordion title="Changing the toggle keybind">
+  Open `Stardew Valley/Mods/AutoForager/config.json` and update the `ToggleForagerKeybind` field with your preferred key or key combination. If you have Generic Mod Config Menu installed, you can rebind the key from the in-game options screen without editing any files.
+
+  SMAPI keybind syntax supports single keys (`H`) and combinations (`LeftAlt + H`). Multiple bindings are separated by commas: `"LeftAlt + H, RightAlt + H"`.
+</Accordion>

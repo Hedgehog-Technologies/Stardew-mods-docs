@@ -1,0 +1,105 @@
+---
+title: "Auto Trasher: Automatic Inventory Cleanup for Stardew Valley"
+sidebarTitle: "Overview"
+description: "Auto Trasher automatically discards unwanted items the moment they enter your inventory, with a reclaim system and full in-game trash list management."
+---
+
+Auto Trasher eliminates the tedium of manually clearing junk from your inventory. The moment a listed item lands in your inventory — whether from a fishing trip, a mine run, or foraging — Auto Trasher instantly removes it, plays the trashcan sound, and shows a HUD notification. You never have to open your bag just to throw away Trash, Driftwood, or Soggy Newspapers again.
+
+## What Auto Trasher Does
+
+<CardGroup cols={2}>
+  <Card title="Instant Auto-Trashing" icon="trash">
+    Items on your Trash List are removed from your inventory the instant they arrive, before you ever see them pile up.
+  </Card>
+  <Card title="Reclaim System" icon="rotate-left">
+    Every auto-trashed item is saved to a rolling reclaim history so you can recover anything removed by mistake.
+  </Card>
+  <Card title="In-Game Menu" icon="list">
+    Open the Trash List Menu to view all tracked items, remove entries, or reclaim recently trashed items — no config file editing required.
+  </Card>
+  <Card title="Quick-Add Keybind" icon="bolt">
+    Hover over any item in your inventory and press Alt+X to instantly add it to your Trash List and remove it from your bag.
+  </Card>
+</CardGroup>
+
+## Key Features
+
+### Automatic Trashing with HUD Notification
+
+When Auto Trasher removes an item, a HUD message appears reading **"Automatically trashed [Item]"**, complete with the item's icon and stack count. The standard "You picked up X" notification is suppressed for trashed items so you don't see duplicate messages.
+
+### Reclaim System
+
+Auto Trasher keeps a rolling history of every item it has removed (10 items by default, configurable up to 100). If you accidentally trash something valuable, open the Trash List Menu and switch to the **Reclaim** tab to get it back. Reclaiming an item costs the vanilla trash reclamation price.
+
+### Trash List Menu
+
+Press **Left Alt + L** (or **Right Alt + L**) from anywhere in the world to open the Trash List Menu. The menu has two tabs:
+
+- **Trash List** — shows every item currently being auto-trashed; click the button next to any entry to remove it with a confirmation dialog.
+- **Reclaim List** — shows recently auto-trashed items you can recover.
+
+### Quick-Add Keybind
+
+Open your inventory, hover over any item you want to auto-trash, then press **Left Alt + X** (or **Right Alt + X**). The item is added to your Trash List and immediately removed from your inventory. A HUD message confirms the addition.
+
+### Toggle Keybind
+
+Press **Left Alt + R** (or **Right Alt + R**) while in the world to enable or disable Auto Trasher without opening any menu. A HUD message confirms the new state: **ACTIVATED** or **DEACTIVATED**.
+
+### Vanilla Trash Reclamation Gold
+
+If the game would normally award you gold for recycling an item (based on your Recycling profession), Auto Trasher still grants that gold when it auto-trashes the item. You won't miss out on any currency just because the item disappeared instantly.
+
+## Default Trash List
+
+Auto Trasher ships with a pre-populated Trash List covering the most common junk items. These items are auto-trashed immediately on your first run with the mod installed.
+
+| Item | Qualified Item ID |
+|---|---|
+| Trash | `(O)168` |
+| Driftwood | `(O)169` |
+| Broken Glasses | `(O)170` |
+| Broken CD | `(O)171` |
+| Soggy Newspaper | `(O)172` |
+| Rotten Plant | `(O)747` |
+| Rotten Plant | `(O)748` |
+
+<Note>
+  Both Rotten Plant variants (IDs 747 and 748) are included in the default list because the game uses two separate entries for this item.
+</Note>
+
+## Download Auto Trasher
+
+<CardGroup cols={2}>
+  <Card title="Nexus Mods" icon="download" href="https://www.nexusmods.com/stardewvalley/mods/23663">
+    Download Auto Trasher from Nexus Mods.
+  </Card>
+  <Card title="CurseForge" icon="download" href="https://www.curseforge.com/stardewvalley/mods/auto-trasher">
+    Download Auto Trasher from CurseForge.
+  </Card>
+</CardGroup>
+
+## Requirements
+
+- **Stardew Valley** 1.6 or later
+- **SMAPI** 4.0.0 or later
+
+<Tip>
+  Install [Generic Mod Config Menu (GMCM)](https://www.nexusmods.com/stardewvalley/mods/5098) to configure Auto Trasher's keybinds and reclaim history size directly from the in-game options menu.
+</Tip>
+
+## Installation
+
+<Steps>
+  <Step title="Install SMAPI">
+    Download and install [SMAPI](https://smapi.io) if you haven't already.
+  </Step>
+  <Step title="Install Auto Trasher">
+    Unzip the Auto Trasher mod folder into your `Stardew Valley/Mods` directory.
+  </Step>
+  <Step title="Launch the Game">
+    Start Stardew Valley through SMAPI. Auto Trasher activates automatically with the default Trash List ready to go.
+  </Step>
+</Steps>

@@ -1,72 +1,107 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mintlify Starter Kit",
+  "name": "Hedgehog Technologies",
+  "theme": "maple",
+  "favicon": "https://media.brand.dev/c711fff9-13d3-4f4d-bf50-9e86b9cdd6d6.svg",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#8b410e",
+    "light": "#f7ba88",
+    "dark": "#070605"
   },
-  "favicon": "/favicon.svg",
   "navigation": {
-    "pages": [
+    "tabs": [
       {
-        "group": "Getting Started",
-        "pages": [
-          "index",
-          "quickstart"
+        "tab": "Getting Started",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "introduction",
+              "installation"
+            ]
+          },
+          {
+            "group": "Mod Compatibility",
+            "pages": [
+              "compatibility/smapi",
+              "compatibility/mod-integrations"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Auto Forager",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "auto-forager/overview",
+              "auto-forager/how-it-works"
+            ]
+          },
+          {
+            "group": "Configuration",
+            "pages": [
+              "auto-forager/general-settings",
+              "auto-forager/forage-toggles",
+              "auto-forager/keybinds"
+            ]
+          },
+          {
+            "group": "Content Packs",
+            "pages": [
+              "auto-forager/content-packs/overview",
+              "auto-forager/content-packs/available-packs",
+              "auto-forager/content-packs/creating-content-packs"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Auto Trasher",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "auto-trasher/overview",
+              "auto-trasher/how-it-works"
+            ]
+          },
+          {
+            "group": "Configuration",
+            "pages": [
+              "auto-trasher/trash-list",
+              "auto-trasher/reclaim-system",
+              "auto-trasher/keybinds-and-settings"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Other Mods",
+        "groups": [
+          {
+            "group": "Allow Beach Sprinklers",
+            "pages": [
+              "allow-beach-sprinklers/overview",
+              "allow-beach-sprinklers/usage"
+            ]
+          },
+          {
+            "group": "Full Fishing Bar",
+            "pages": [
+              "full-fishing-bar/overview",
+              "full-fishing-bar/configuration"
+            ]
+          }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://app.mintlify.com"
-    }
-  },
-  "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
     ]
   },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+  "navbar": {
+    "primary": {
+      "type": "github",
+      "href": "https://github.com/Hedgehog-Technologies/StardewMods"
     }
   }
 }

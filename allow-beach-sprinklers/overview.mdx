@@ -1,0 +1,53 @@
+---
+title: "Allow Beach Sprinklers: Fix Sprinklers on Beach Farm"
+sidebarTitle: "Overview"
+description: "Allow Beach Sprinklers removes the vanilla restriction that prevents sprinklers from watering crops on the Beach Farm layout introduced in Stardew Valley 1.5."
+---
+
+The Beach Farm (layout #6) is one of the most visually distinctive farm options in Stardew Valley, but it comes with a frustrating limitation: the sandy soil that covers most of the farmable area blocks sprinklers from watering your crops. Allow Beach Sprinklers removes that restriction every morning so your irrigation works exactly as it would on any other farm layout — no workarounds, no crop-withering surprises.
+
+## What It Does
+
+Each morning when the day starts, the mod patches the `NoSprinklers` property on the Beach Farm's sand tiles from `true` to `false`. This single change is all it takes — your sprinklers wake up and water normally, and you never have to think about it again.
+
+<Note>
+  The patch runs every morning automatically. You don't need to do anything after installing the mod — just place your sprinklers and go about your day.
+</Note>
+
+## Zero Configuration
+
+Allow Beach Sprinklers has no settings whatsoever. There is no `config.json`, no Generic Mod Config Menu entry, and no keybinds. Install the mod, launch the game, and your sprinklers work. There is nothing to configure or tune.
+
+## Applies Only to the Beach Farm
+
+The mod checks your current farm layout before applying any changes. If you are playing on a farm other than layout #6, the mod does nothing — other farm types already allow sprinklers without any patching.
+
+## Sprinkler Placement on Sand
+
+After installing the mod, you can place sprinklers directly on sand tiles during the day. The watering effect kicks in the following morning once the patch runs. Every sprinkler type — Basic, Quality, Iridium, and modded sprinklers — is compatible.
+
+## Multiplayer
+
+<CardGroup cols={2}>
+  <Card title="Host Player" icon="server">
+    The host must have the mod installed for sprinklers to water crops server-side each morning. Without it, the patch never runs and irrigation fails.
+  </Card>
+  <Card title="Farmhands" icon="users">
+    Farmhands need the mod installed to place sprinklers on sand tiles. Without it, the game still blocks placement from their client.
+  </Card>
+</CardGroup>
+
+## Download
+
+<CardGroup cols={2}>
+  <Card title="Nexus Mods" icon="download" href="https://www.nexusmods.com/stardewvalley/mods/7629">
+    Download Allow Beach Sprinklers from Nexus Mods (mod #7629).
+  </Card>
+  <Card title="CurseForge" icon="download" href="https://www.curseforge.com/stardewvalley/mods/allow-beach-sprinklers">
+    Download Allow Beach Sprinklers from CurseForge.
+  </Card>
+</CardGroup>
+
+<Note>
+  If you uninstall Allow Beach Sprinklers, any sprinklers you placed will remain on the sand but will stop watering your crops — the vanilla restriction simply reasserts itself. Your save file is not corrupted in any way. Reinstall the mod to restore normal watering behaviour.
+</Note>

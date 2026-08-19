@@ -1,0 +1,44 @@
+---
+title: "SMAPI Version Requirements for HedgeTech Mods"
+sidebarTitle: "SMAPI"
+description: "Minimum SMAPI and Stardew Valley version requirements for each Hedgehog Technologies mod, plus how to keep SMAPI up to date."
+---
+
+Every Hedgehog Technologies mod runs on top of SMAPI — the Stardew Modding API — which is the open-source modding framework that loads mods, exposes game data to them, and keeps them compatible across game updates. Before you install any HedgeTech mod, make sure you have a working SMAPI installation and a supported version of Stardew Valley.
+
+## What Is SMAPI?
+
+SMAPI sits between Stardew Valley and your mods. When you launch the game through SMAPI, it loads every mod in your `Stardew Valley/Mods` folder, injects the necessary hooks into the game, and provides mods with a safe, versioned API to read and modify game state. Without SMAPI, none of these mods can run.
+
+Download the latest version of SMAPI from the official site:
+
+<Card title="Download SMAPI" icon="download" href="https://smapi.io">
+  Get the latest SMAPI installer from smapi.io — it supports Windows, macOS, and Linux.
+</Card>
+
+## Version Requirements
+
+All four HedgeTech mods share the same minimum requirements. Install the versions listed below (or newer) to ensure full compatibility.
+
+| Mod | Stardew Valley | SMAPI |
+|-----|---------------|-------|
+| Allow Beach Sprinklers | 1.6+ | 4.0.0+ |
+| Auto Forager | 1.6+ | 4.0.0+ |
+| Auto Trasher | 1.6+ | 4.0.0+ |
+| Full Fishing Bar | 1.6+ | 4.0.0+ |
+
+<Tip>
+  Always use the **latest** available version of both SMAPI and each mod. Newer releases include bug fixes, performance improvements, and compatibility patches for Stardew Valley updates.
+</Tip>
+
+## Keeping SMAPI Up to Date
+
+SMAPI's built-in update checker runs every time you launch the game. If a new SMAPI version is available, a message appears in the SMAPI console window before the title screen loads. Follow the link it displays to download the new installer, then re-run it — the installer upgrades SMAPI in place without affecting your mods.
+
+## Mod Update Notifications
+
+SMAPI also checks for updates to every installed mod on startup. When a newer version of a HedgeTech mod is published to Nexus Mods, SMAPI displays an update alert in the console and log file with a direct link to the download page. You do not need to check Nexus Mods manually — just watch the SMAPI console when you launch.
+
+<Note>
+  **Multiplayer sessions:** For the best experience, every player in a multiplayer session should have the same mods installed at the same versions. Most HedgeTech mods are client-side — each player who wants the functionality must install the mod themselves. A host running Auto Forager does not automatically give farmhands the same behavior; each farmhand must install it independently. Mismatched mod versions are unlikely to cause crashes but can produce inconsistent behavior across players.
+</Note>

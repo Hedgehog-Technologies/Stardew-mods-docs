@@ -1,0 +1,143 @@
+---
+title: "Create an Auto Forager Content Pack for Your SDV Mod"
+sidebarTitle: "Creating Content Packs"
+description: "Learn how to create an Auto Forager content pack to add your mod's custom items, fruit trees, and wild trees to the automatic foraging system."
+---
+
+If you author a Stardew Valley mod that adds forageables, fruit trees, or wild trees, you can make those items work with Auto Forager by publishing a content pack. Your users install it alongside your mod, and Auto Forager handles collection automatically — no code changes to your mod required. This guide walks you through the complete process.
+
+## Prerequisites
+
+Before you start, confirm that you have:
+
+- **Auto Forager 3.0.0+** installed for testing
+- The item IDs for all the items you want to register (check your mod's `content.json` or data files)
+- A text editor for writing JSON
+
+## Steps
+
+<Steps>
+  ### Create the Content Pack Folder
+
+  Create a new folder inside `Stardew Valley/Mods`. Follow the standard convention of prefixing the name with `[AF]` so players can identify it at a glance:
+
+  ```
+  Stardew Valley/
+  └── Mods/
+      └── [AF] My Mod Forage/
+  ```
+
+  ### Create manifest.json
+
+  Every SMAPI mod and content pack requires a `manifest.json`. The critical field is `ContentPackFor`, which tells SMAPI that this pack targets Auto Forager. Set `MinimumVersion` to `"3.0.0"` to ensure your pack only loads with a compatible version.
+
+  Create `manifest.json` in your pack folder with the following structure:
+
+  ```json
+  {
+    "Name": "[AF] My Mod Forage",
+    "Author": "YourName",
+    "Version": "1.0.0",
+    "Description": "Adds My Mod items to Auto Forager",
+    "UniqueID": "YourName.MyMod.AutoForagerPack",
+    "ContentPackFor": {
+      "UniqueID": "HedgehogTechnologies.AutoForager",
+      "MinimumVersion": "3.0.0"
+    }
+  }
+  ```
+
+  <Tip>
+    Choose a `UniqueID` that clearly links this pack to both your mod and Auto Forager — for example `YourName.MyMod.AutoForagerPack`. This avoids conflicts with other mods.
+  </Tip>
+
+  ### Create content.json
+
+  Create `content.json` in the same folder. This file lists the items you want Auto Forager to register. At minimum you need a `Category` and at least one item list.
+
+  Here is a complete example covering all four item types:
+
+  ```json
+  {
+    "Category": "My Mod",
+    "Forageables": [
+      "YourName.MyMod_WildHerb",
+      "YourName.MyMod_ForestBerry",
+      "YourName.MyMod_GlowShroom"
+    ],
+    "FruitTrees": [
+      "YourName.MyMod_ElderberrySapling",
+      "YourName.MyMod_CrystalPearSapling"
+    ],
+    "WildTrees": [
+      "YourName.MyMod_AncientSeed"
+    ],
+    "IgnoredItems": [
+      "YourName.MyMod_SpecialQuestItem"
+    ]
+  }
+  ```
+
+  ### Test Your Pack
+
+  Drop the finished `[AF] My Mod Forage` folder into your `Mods` directory alongside Auto Forager and your mod, then launch the game. Open the SMAPI console — Auto Forager logs each content pack it loads. Your category name should appear in Generic Mod Config Menu (GMCM) under the Auto Forager section, where players can toggle your items on or off individually.
+
+</Steps>
+
+## content.json Schema Reference
+
+<ParamField body="Category" type="string" required>
+  The display name for this group in GMCM. Players see this label when toggling your items on or off. Use a short, recognizable name that matches your mod — for example `"Ridgeside Village"` or `"Cornucopia – More Crops"`.
+</ParamField>
+
+<ParamField body="Forageables" type="string[]">
+  Item IDs for ground-spawned objects that players (and Auto Forager) collect by walking over them. Accept both qualified item IDs (prefixed with the type token) and unqualified IDs:
+
+  - Qualified: `"(O)ItemId"` — the `(O)` prefix explicitly identifies the item as an Object
+  - Unqualified: `"ModUniqueId_ItemName"` — Auto Forager resolves the type from game data
+
+  Use the same IDs your mod defines in `Data/Objects`.
+</ParamField>
+
+<ParamField body="FruitTrees" type="string[]">
+  Item IDs for fruit tree saplings whose mature trees Auto Forager should shake to harvest fruit. Use the sapling IDs as they appear in `Data/FruitTrees` — for example `"YourName.MyMod_AppleSapling"`.
+</ParamField>
+
+<ParamField body="WildTrees" type="string[]">
+  Item IDs for wild tree seeds whose grown trees Auto Forager should harvest. Use the seed/starter IDs as they appear in `Data/WildTrees`.
+</ParamField>
+
+<ParamField body="IgnoredItems" type="string[]">
+  Item IDs to explicitly exclude from foraging, even if the game's data would otherwise mark them as forageable. Use this to prevent Auto Forager from collecting quest items, rare drops, or items that require player choice to pick up.
+</ParamField>
+
+## Alternative: Asset Editing with Content Patcher
+
+If you prefer to keep Auto Forager support inside your existing mod rather than shipping a separate pack, you can inject custom fields directly into the game's data assets using [Content Patcher](https://www.nexusmods.com/stardewvalley/mods/1915).
+
+Add an `EditData` entry to your Content Patcher `content.json` for any asset your items live in (`Data/Objects`, `Data/FruitTrees`, or `Data/WildTrees`):
+
+```json
+{
+  "Action": "EditData",
+  "Target": "Data/Objects",
+  "Fields": {
+    "YourName.MyMod_WildHerb": {
+      "CustomFields": {
+        "HedgehogTechnologies.AutoForager.Forageable": "true",
+        "HedgehogTechnologies.AutoForager.Category": "My Mod"
+      }
+    }
+  }
+}
+```
+
+Auto Forager reads `HedgehogTechnologies.AutoForager.Forageable` and `HedgehogTechnologies.AutoForager.Category` from game data at startup and registers matching items automatically. This approach requires no separate pack folder — everything ships inside your existing mod.
+
+<Note>
+  The asset editing approach and content packs are fully compatible. You can use asset editing for your own mod's items and still ship a content pack to register items from a third-party mod you want to support.
+</Note>
+
+## Publishing Your Pack
+
+Once your pack is working, consider publishing it on [Nexus Mods](https://www.nexusmods.com/stardewvalley) either as a standalone mod or as an optional file on your main mod's page. Add Auto Forager and your source mod as requirements so players see the dependency before downloading.

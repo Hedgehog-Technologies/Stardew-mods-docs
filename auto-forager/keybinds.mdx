@@ -1,0 +1,103 @@
+---
+title: "Auto Forager Keyboard and Controller Keybind Reference"
+sidebarTitle: "Keybinds"
+description: "Default keyboard shortcuts for Auto Forager including the toggle keybind and how to reassign keybinds using Generic Mod Config Menu or config.json."
+---
+
+Auto Forager ships with one configurable keybind that lets you switch the mod on or off at any moment during play without opening any menu. The default binding gives you two equivalent combos so the shortcut works naturally whether you reach for the left or right side of your keyboard.
+
+## Default Keybinds
+
+<ParamField body="ToggleForagerKeybind" type="KeybindList" default="LeftAlt + H, RightAlt + H">
+  Toggles Auto Forager between **ACTIVATED** and **DEACTIVATED**. A brief message appears on screen confirming the new state each time you press the shortcut. This is equivalent to flipping the `AutoForagingEnabled` setting in [general configuration](/auto-forager/general-settings) but takes effect immediately without opening any menu.
+
+  **Default combos:**
+  - `LeftAlt + H` — hold left Alt and press H
+  - `RightAlt + H` — hold right Alt and press H
+
+  Either combo works; you do not need to press both.
+</ParamField>
+
+<Note>
+  Controller buttons are fully supported. Both GMCM's keybind picker and the toggle itself recognize any button or button combination that SMAPI's input system exposes. For example, you can bind the toggle to `LeftShoulder + A` on a gamepad.
+</Note>
+
+## Changing Keybinds via GMCM
+
+The easiest way to reassign a keybind is through [Generic Mod Config Menu](https://www.nexusmods.com/stardewvalley/mods/5098):
+
+<Steps>
+  <Step title="Open the in-game menu">
+    Press Escape (or the equivalent controller button) to open the standard game menu.
+  </Step>
+  <Step title="Navigate to Mod Settings">
+    Click the controller/gamepad icon at the bottom of the menu to open **Mod Settings**.
+  </Step>
+  <Step title="Select Auto Forager">
+    Scroll through the mod list and click **Auto Forager**.
+  </Step>
+  <Step title="Edit the Toggle Forager Keybind field">
+    In the **General Options** section, locate the **Toggle Forager Keybind** field. Click it, then press the key or button combination you want to assign. GMCM records your input immediately.
+  </Step>
+  <Step title="Save">
+    Click **Save** at the bottom of the GMCM page. The new binding takes effect right away — you do not need to restart the game.
+  </Step>
+</Steps>
+
+## Changing Keybinds via config.json
+
+You can also edit the binding directly in `Stardew Valley/Mods/AutoForager/config.json`. Close the game first, then open the file in a text editor and update the `ToggleForagerKeybind` value.
+
+### Format
+
+SMAPI uses the **KeybindList** format for this field:
+
+- **Single key:** just the key name, e.g. `"H"`
+- **Key combo (modifier + key):** join with ` + `, e.g. `"LeftAlt + H"`
+- **Multiple bindings (any triggers the action):** separate with `, `, e.g. `"LeftAlt + H, RightAlt + H"`
+
+Key names match SMAPI's `SButton` enum. Common examples:
+
+| Key | Value in config |
+|---|---|
+| Left Alt | `LeftAlt` |
+| Right Alt | `RightAlt` |
+| Left Control | `LeftControl` |
+| Left Shift | `LeftShift` |
+| Any letter | `A` through `Z` |
+| F-keys | `F1` through `F12` |
+| Gamepad left bumper | `LeftShoulder` |
+| Gamepad right bumper | `RightShoulder` |
+| Gamepad A button | `ControllerA` |
+
+### Example config.json snippet
+
+```json
+{
+  "ToggleForagerKeybind": "LeftAlt + H, RightAlt + H"
+}
+```
+
+To change the toggle to a single unmodified key, replace the value:
+
+```json
+{
+  "ToggleForagerKeybind": "F5"
+}
+```
+
+To add a third combo — say, also allowing `LeftControl + F` — extend the list with a comma:
+
+```json
+{
+  "ToggleForagerKeybind": "LeftAlt + H, RightAlt + H, LeftControl + F"
+}
+```
+
+<Tip>
+  If you assign the toggle to a key that Stardew Valley already uses (such as `E` to open inventory), both actions will fire at the same time. Choose a combo that does not conflict with existing game bindings.
+</Tip>
+
+<Warning>
+  After editing `config.json` manually, save the file **before** launching the game. SMAPI reads configuration at startup only, so changes made while the game is running take effect on the next launch.
+</Warning>

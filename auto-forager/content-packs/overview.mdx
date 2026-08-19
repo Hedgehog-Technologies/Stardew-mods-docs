@@ -1,0 +1,61 @@
+---
+title: "Auto Forager Content Pack System: Overview and Setup"
+sidebarTitle: "Overview"
+description: "Auto Forager supports content packs that let any mod add its custom forageable items, fruit trees, and wild trees to the automatic foraging system."
+---
+
+Auto Forager's content pack system lets third-party mods integrate their custom items seamlessly into automatic foraging. When a supported mod is installed alongside the right content pack, Auto Forager recognizes and collects that mod's forageable items, shakes its fruit trees, and harvests its wild tree seeds — all without any extra configuration on your part.
+
+## How Items Get Registered
+
+Auto Forager detects custom mod items through two independent mechanisms. Either approach works on its own, and mod authors can choose whichever fits best into their workflow.
+
+<CardGroup cols={2}>
+  <Card title="Content Packs" icon="box-open">
+    A standalone SMAPI content pack that targets Auto Forager. Drop it into your `Mods` folder alongside the source mod and Auto Forager does the rest. This is the recommended approach for maximum compatibility and player control.
+  </Card>
+  <Card title="Asset Editing" icon="code">
+    Any mod (including Content Patcher packs) can inject custom fields directly into the game's data assets. Auto Forager reads those fields at runtime and adds the items automatically — no separate pack required.
+  </Card>
+</CardGroup>
+
+### Method 1: Content Packs
+
+A content pack is a self-contained folder you place inside `Stardew Valley/Mods`. It contains a `manifest.json` that declares `ContentPackFor` targeting `HedgehogTechnologies.AutoForager`, and a `content.json` that lists the items to register. Auto Forager loads every content pack it finds at game startup and exposes each pack's items as a named group inside the Generic Mod Config Menu (GMCM), so you can enable or disable entire groups with a single toggle.
+
+Content packs can register three types of items:
+
+- **Forageables** — ground-spawned objects you walk over to collect
+- **Fruit Trees** — trees you shake to harvest their fruit
+- **Wild Trees** — trees whose seeds Auto Forager collects automatically
+
+### Method 2: Asset Editing
+
+Any mod that edits `Data/Objects`, `Data/FruitTrees`, or `Data/WildTrees` can mark its entries as Auto Forager–compatible by injecting two custom fields:
+
+| Custom Field | Value |
+|---|---|
+| `HedgehogTechnologies.AutoForager.Forageable` | `"true"` |
+| `HedgehogTechnologies.AutoForager.Category` | A display name string, e.g. `"My Mod Forage"` |
+
+Auto Forager scans these fields when it builds its item list. Items registered this way appear in GMCM under the category name you provide. The [Content Patcher](https://www.nexusmods.com/stardewvalley/mods/1915) mod makes injecting custom fields straightforward for any existing content mod.
+
+## Official Content Packs
+
+Hedgehog Technologies publishes 17 first-party content packs covering the most popular Stardew Valley overhaul and expansion mods. Each pack is maintained alongside Auto Forager and tested against the latest versions of both Auto Forager and the source mod.
+
+<Card title="Browse Available Packs" icon="list" href="/auto-forager/content-packs/available-packs">
+  See the full list of official packs organized by mod family, including what items and tree types each one registers.
+</Card>
+
+## Creating Your Own Content Pack
+
+If you maintain a mod with custom forageables and want to add Auto Forager support, you can author a content pack in minutes. The schema is small — a `manifest.json`, a `content.json`, and a list of item IDs.
+
+<Card title="Content Pack Authoring Guide" icon="pen-to-square" href="/auto-forager/content-packs/creating-content-packs">
+  Follow the step-by-step guide to build and publish a content pack for your mod.
+</Card>
+
+<Note>
+  Content pack support requires **Auto Forager version 3.0.0 or later**. Players on older versions will need to update Auto Forager before content packs are recognized.
+</Note>

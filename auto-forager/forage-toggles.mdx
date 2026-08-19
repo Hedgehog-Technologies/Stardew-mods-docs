@@ -1,0 +1,210 @@
+---
+title: "Auto Forager Per-Item Forage Toggle Configuration Guide"
+sidebarTitle: "Forage Toggles"
+description: "Configure exactly which items Auto Forager collects using per-item toggles for bushes, ground forageables, fruit trees, wild trees, and wild flower grass."
+---
+
+Auto Forager gives you fine-grained control over every item category it can collect. Rather than a single on/off switch, the mod exposes a toggle for each individual item so you can opt into exactly the experience you want — automatically harvesting your orchard every day while still hand-picking ground forageables for the Foraging XP, for example. These toggles live under the `ForageToggles` key in `config.json` as nested dictionaries, one per category. When [Generic Mod Config Menu](https://www.nexusmods.com/stardewvalley/mods/5098) (GMCM) is installed, each category gets its own dedicated page accessible from the **Categorized Toggles** section of the Auto Forager settings.
+
+<Note>
+  The toggle lists below reflect vanilla defaults. If you have other mods installed — such as Bush Bloom Mod, Custom Bush, or Farm Type Manager — additional entries are added to the relevant categories automatically. Your `config.json` may contain more items than shown here.
+</Note>
+
+## Bush Toggles (`BushToggles`)
+
+Bush toggles control which berry-bearing and special bushes Auto Forager shakes. Because bushes produce items on a seasonal schedule, these toggles let you pick berries automatically during their harvest windows without touching the general foraging settings.
+
+<Tabs>
+  <Tab title="Vanilla Bushes">
+    <ParamField body="Salmonberry" type="bool" default="true">
+      Shake berry bushes during Salmonberry season (Spring 15–18) to collect Salmonberries automatically.
+    </ParamField>
+
+    <ParamField body="Blackberry" type="bool" default="true">
+      Shake berry bushes during Blackberry season (Fall 8–11) to collect Blackberries automatically. This toggle is independent of the `Blackberry` entry under `ForagingToggles`, which controls ground-spawned Blackberries.
+    </ParamField>
+
+    <ParamField body="Tea" type="bool" default="true">
+      Shake Tea bushes for Tea Leaves when they are ready (last week of spring, summer, and fall).
+    </ParamField>
+
+    <ParamField body="Walnut" type="bool" default="false">
+      Shake Golden Walnut bushes on Ginger Island for Golden Walnuts. This defaults to **off** because Golden Walnuts are intentionally scarce end-game collectibles. Enable it only if you have already completed the Walnut Hunter achievement or simply do not mind bypassing that challenge.
+    </ParamField>
+  </Tab>
+  <Tab title="Custom Bushes">
+    If you have **Bush Bloom Mod** or **Custom Bush** installed, Auto Forager detects those mods at startup and adds a toggle entry for each custom bush item they introduce. These entries appear under the same `BushToggles` dictionary in `config.json`, grouped by category in the GMCM Bushes page. You do not need to add them manually — they are populated and saved automatically on your first launch with the mods present.
+  </Tab>
+</Tabs>
+
+## Foraging Toggles (`ForagingToggles`)
+
+Ground-spawned forageables use an opt-in model — every item in this category defaults to **false**. Enable the specific items you want Auto Forager to collect automatically and leave everything else off.
+
+<Note>
+  Ground forageables default to **off** because many players prefer to pick them up manually. Each hand-foraged item awards Foraging XP and has a chance to trigger the Gatherer profession bonus, so automatically collecting everything would bypass meaningful gameplay progression. Opt in to only the items that feel tedious to gather by hand — saving Truffles from your pig pen or gathering seasonal minerals, for instance — while still walking up to the forageable flowers yourself.
+</Note>
+
+The items available in this category are organized into groups in GMCM. The full vanilla set includes:
+
+<Accordion title="Spring Forageables">
+  Daffodil, Dandelion, Leek, Wild Horseradish — all default **false**
+</Accordion>
+
+<Accordion title="Summer Forageables">
+  Fiddlehead Fern, Grapes, Spice Berry, Sweet Pea — all default **false**
+</Accordion>
+
+<Accordion title="Fall Forageables">
+  Blackberry (ground-spawned, separate from bush Blackberries), Hazelnut (ground-spawned, separate from tree Hazelnuts), Wild Plum — all default **false**
+</Accordion>
+
+<Accordion title="Winter Forageables">
+  Crocus, Crystal Fruit, Holly — all default **false**
+
+  Snow Yam and Winter Root are also in this group. Both require digging, so they additionally respect the `RequireHoe` setting from your [general configuration](/auto-forager/general-settings).
+</Accordion>
+
+<Accordion title="Mushrooms">
+  Chanterelle, Common Mushroom, Magma Cap, Morel, Purple Mushroom, Red Mushroom — all default **false**
+</Accordion>
+
+<Accordion title="Beach Forageables">
+  Clam, Cockle, Coral, Mussel, Nautilus Shell, Oyster, Rainbow Shell, Sea Urchin, Seaweed — all default **false**
+</Accordion>
+
+<Accordion title="Desert Forageables">
+  Cactus Fruit, Coconut (ground-spawned) — both default **false**
+</Accordion>
+
+<Accordion title="Minerals">
+  Dragon Tooth, Earth Crystal, Fire Quartz, Frozen Tear, Quartz — all default **false**
+</Accordion>
+
+<Accordion title="Special">
+  Ginger (requires Hoe when `RequireHoe` is enabled), Moss (requires any tool when `RequireToolMoss` is enabled), Spring Onion — all default **false**
+
+  Animal products also appear here if they are found as world objects: Truffle (dropped by pigs), Wool, and various Egg types default to **false**.
+</Accordion>
+
+## Fruit Tree Toggles (`FruitTreeToggles`)
+
+Fruit tree toggles default to **true** for all vanilla trees. Auto Forager shakes a fruit tree only when it has at least the number of fruits specified by `FruitsReadyToShake` in your [general settings](/auto-forager/general-settings).
+
+<ParamField body="Apple" type="bool" default="true">Harvest Apples from Apple trees in Fall.</ParamField>
+<ParamField body="Apricot" type="bool" default="true">Harvest Apricots from Apricot trees in Spring.</ParamField>
+<ParamField body="Banana" type="bool" default="true">Harvest Bananas from Banana trees on Ginger Island (year-round).</ParamField>
+<ParamField body="Cherry" type="bool" default="true">Harvest Cherries from Cherry trees in Spring.</ParamField>
+<ParamField body="Mango" type="bool" default="true">Harvest Mangoes from Mango trees on Ginger Island (year-round).</ParamField>
+<ParamField body="Orange" type="bool" default="true">Harvest Oranges from Orange trees in Summer.</ParamField>
+<ParamField body="Peach" type="bool" default="true">Harvest Peaches from Peach trees in Summer.</ParamField>
+<ParamField body="Pomegranate" type="bool" default="true">Harvest Pomegranates from Pomegranate trees in Fall.</ParamField>
+
+<Tip>
+  Custom fruit trees added by other mods are detected automatically at startup and receive their own toggle entry under `FruitTreeToggles`. They default to enabled, matching the vanilla behavior.
+</Tip>
+
+## Wild Tree Toggles (`WildTreeToggles`)
+
+Wild tree toggles control which seeds and drops Auto Forager shakes from mature wild trees. All entries default to **true**.
+
+<ParamField body="Acorn" type="bool" default="true">Shake Oak trees for Acorns.</ParamField>
+<ParamField body="Coconut" type="bool" default="true">Shake Palm trees for Coconuts. This is independent of the ground-spawned Coconut toggle in `ForagingToggles`.</ParamField>
+<ParamField body="Golden Coconut" type="bool" default="true">Shake Palm trees on Ginger Island for Golden Coconuts. This is tracked separately from normal Coconuts.</ParamField>
+<ParamField body="Hazelnut" type="bool" default="true">Shake trees for Hazelnuts in Fall. This is independent of ground-spawned Hazelnuts in `ForagingToggles`.</ParamField>
+<ParamField body="Mahogany Seed" type="bool" default="true">Shake Mahogany trees for Mahogany Seeds.</ParamField>
+<ParamField body="Maple Seed" type="bool" default="true">Shake Maple trees for Maple Seeds.</ParamField>
+<ParamField body="Pine Cone" type="bool" default="true">Shake Pine trees for Pine Cones.</ParamField>
+
+## Wild Flowers Reimagined Toggles (`FlowerGrassToggles`)
+
+This category is only active when the [Wild Flowers Reimagined](https://www.nexusmods.com/stardewvalley/mods/21498) mod is installed (minimum version **3.3.3**). When detected, Auto Forager adds a dedicated GMCM page — **Wild Flowers Reimagined Toggles** — where each flower type that mod introduces can be independently enabled or disabled. The toggles are saved under `FlowerGrassToggles` in `config.json`.
+
+<Info>
+  The toggle list for Wild Flowers Reimagined is populated dynamically from the mod's own item data each time you load a save. If you install or remove flower content packs for Wild Flowers Reimagined, your toggle list updates automatically on the next game launch.
+</Info>
+
+## config.json Structure Example
+
+The `ForageToggles` object uses a nested dictionary format: the outer key names the category, and the inner key–value pairs map each item's internal name to its enabled state.
+
+```json
+{
+  "ForageToggles": {
+    "BushToggles": {
+      "Salmonberry": true,
+      "Blackberry": true,
+      "Tea": true,
+      "Walnut": false
+    },
+    "ForagingToggles": {
+      "Daffodil": false,
+      "Wild Horseradish": false,
+      "Leek": false,
+      "Dandelion": false,
+      "Spring Onion": false,
+      "Spice Berry": false,
+      "Grape": false,
+      "Sweet Pea": false,
+      "Fiddlehead Fern": false,
+      "Hazelnut": false,
+      "Wild Plum": false,
+      "Blackberry": false,
+      "Snow Yam": false,
+      "Winter Root": false,
+      "Crystal Fruit": false,
+      "Holly": false,
+      "Crocus": false,
+      "Common Mushroom": false,
+      "Red Mushroom": false,
+      "Purple Mushroom": false,
+      "Chanterelle": false,
+      "Morel": false,
+      "Magma Cap": false,
+      "Clam": false,
+      "Cockle": false,
+      "Mussel": false,
+      "Oyster": false,
+      "Nautilus Shell": false,
+      "Sea Urchin": false,
+      "Rainbow Shell": false,
+      "Coral": false,
+      "Seaweed": false,
+      "Coconut": false,
+      "Cactus Fruit": false,
+      "Quartz": false,
+      "Earth Crystal": false,
+      "Frozen Tear": false,
+      "Fire Quartz": false,
+      "Dragon Tooth": false,
+      "Truffle": false,
+      "Ginger": false,
+      "Moss": false
+    },
+    "FruitTreeToggles": {
+      "Cherry": true,
+      "Apricot": true,
+      "Orange": true,
+      "Peach": true,
+      "Pomegranate": true,
+      "Apple": true,
+      "Banana": true,
+      "Mango": true
+    },
+    "WildTreeToggles": {
+      "Acorn": true,
+      "Maple Seed": true,
+      "Pine Cone": true,
+      "Mahogany Seed": true,
+      "Coconut": true,
+      "Golden Coconut": true,
+      "Hazelnut": true
+    },
+    "FlowerGrassToggles": {}
+  }
+}
+```
+
+<Warning>
+  Edit item names in `config.json` exactly as shown — they are case-sensitive internal names. If an item name is mistyped, Auto Forager ignores that entry and falls back to the default value for that item. Use GMCM to avoid typos entirely.
+</Warning>

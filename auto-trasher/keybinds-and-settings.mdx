@@ -1,0 +1,124 @@
+---
+title: "Auto Trasher Configuration: All Settings and Keybinds"
+sidebarTitle: "Settings & Keybinds"
+description: "Complete reference for every Auto Trasher config option and keyboard shortcut: toggle, menu, quick-add keybinds, AllowAllItems, and ReclaimableItemCount."
+---
+
+Auto Trasher's configuration lives in `Stardew Valley/Mods/AutoTrasher/config.json`. You can edit this file directly or, if you have [Generic Mod Config Menu (GMCM)](https://www.nexusmods.com/stardewvalley/mods/5098) installed, adjust all settings except the Trash List array through the in-game options screen. This page covers every available setting and keybind.
+
+## Keybinds
+
+All three keybinds use SMAPI's `KeybindList` format: multiple keybind combinations separated by commas, with modifier keys and the trigger key joined by `+`. Each combination in the list acts as an independent alternative — pressing any one of them triggers the action.
+
+<ParamField path="ToggleTrasherKeybind" type="KeybindList" default="LeftAlt+R, RightAlt+R">
+  Enables or disables Auto Trasher. Press this keybind while in the world (no menu open) to toggle the trasher on or off. A HUD message confirms the new state as **ACTIVATED** or **DEACTIVATED**. When deactivated, the inventory hook is completely unsubscribed.
+</ParamField>
+
+<ParamField path="OpenTrashMenuKeybind" type="KeybindList" default="LeftAlt+L, RightAlt+L">
+  Opens the Trash List Menu. Press this keybind while in the world (no menu open) to display the full Auto Trasher Menu with the Trash List and Reclaim List tabs.
+</ParamField>
+
+<ParamField path="AddTrashKeybind" type="KeybindList" default="LeftAlt+X, RightAlt+X">
+  Adds the currently hovered item to the Trash List. This keybind only functions while the **Inventory** page is open and your cursor is hovering over an item. The item is added to the list and immediately removed from your inventory.
+</ParamField>
+
+<Note>
+  The `OpenTrashMenuKeybind` only works while no other menu is open. You cannot open the Trash List Menu from inside your inventory screen — close it first.
+</Note>
+
+## General Settings
+
+<ParamField path="ReclaimableItemCount" type="integer" default="10">
+  Controls how many auto-trashed items are stored in the reclaim history. Must be between **5** and **100**. When the limit is reached and a new item is trashed, the oldest entry is dropped. Changes made via GMCM take effect immediately; changes in `config.json` require a game restart.
+</ParamField>
+
+<ParamField path="AllowAllItems" type="boolean" default="false">
+  When `false` (the default), only standard Object-type items from `Data/Objects` can be added to the Trash List. This protects tools, weapons, clothing, furniture, and other non-Object item types from accidental trashing. Set to `true` to allow any item type on the Trash List.
+</ParamField>
+
+## Trash List
+
+<ParamField path="TrashList" type="string[]" default='["(O)168","(O)169","(O)170","(O)171","(O)172","(O)747","(O)748"]'>
+  The array of qualified item IDs that Auto Trasher automatically removes from your inventory. Each entry must include the item type prefix in parentheses — for example, `"(O)168"` for Trash or `"(O)169"` for Driftwood. Entries without a valid prefix are removed automatically when the mod loads. This array is updated automatically when you use the in-game menu or Quick-Add keybind.
+</ParamField>
+
+## Keybind Format Reference
+
+SMAPI keybinds follow a consistent format across all mods:
+
+<Tabs>
+  <Tab title="Single Key">
+    A bare key name with no modifier:
+    ```
+    "OpenTrashMenuKeybind": "L"
+    ```
+  </Tab>
+  <Tab title="Modifier + Key">
+    A modifier key and a trigger key joined with `+`:
+    ```
+    "OpenTrashMenuKeybind": "LeftAlt+L"
+    ```
+  </Tab>
+  <Tab title="Multiple Alternatives">
+    Two or more combinations separated by `, ` (comma + space). Any one of them triggers the action:
+    ```
+    "OpenTrashMenuKeybind": "LeftAlt+L, RightAlt+L"
+    ```
+  </Tab>
+</Tabs>
+
+Common modifier keys: `LeftAlt`, `RightAlt`, `LeftControl`, `RightControl`, `LeftShift`, `RightShift`. For a full list of valid key names, see the [SMAPI key bindings reference](https://stardewvalleywiki.com/Modding:Player_Guide/Key_Bindings).
+
+## Complete config.json Example
+
+The following is a complete `config.json` with all settings at their defaults:
+
+```json
+{
+  "ToggleTrasherKeybind": "LeftAlt+R, RightAlt+R",
+  "OpenTrashMenuKeybind": "LeftAlt+L, RightAlt+L",
+  "AddTrashKeybind": "LeftAlt+X, RightAlt+X",
+  "ReclaimableItemCount": 10,
+  "AllowAllItems": false,
+  "TrashList": [
+    "(O)168",
+    "(O)169",
+    "(O)170",
+    "(O)171",
+    "(O)172",
+    "(O)747",
+    "(O)748"
+  ]
+}
+```
+
+## Changing Settings via GMCM
+
+If you have Generic Mod Config Menu installed, all settings except `TrashList` are available through the in-game options screen.
+
+<Steps>
+  <Step title="Open Game Options">
+    Press **Escape** and navigate to **Options**.
+  </Step>
+  <Step title="Find Auto Trasher">
+    Scroll to the **Auto Trasher** section in the mod config list.
+  </Step>
+  <Step title="Edit Settings">
+    Adjust keybinds using the interactive keybind recorder, set the reclaim count with the number slider, and toggle **Remove Trash List Item Restrictions** (AllowAllItems) with the checkbox.
+  </Step>
+  <Step title="Save">
+    Close the menu. GMCM writes the updated values to `config.json` automatically.
+  </Step>
+</Steps>
+
+<Note>
+  The `TrashList` array cannot be edited through GMCM — use the in-game Trash List Menu (Alt+L) or the Quick-Add keybind (Alt+X) to manage it visually, or edit `config.json` directly for bulk changes.
+</Note>
+
+## Keybind Quick Reference
+
+| Action | Default Keybind | Context |
+|---|---|---|
+| Toggle Auto Trasher on/off | `Left Alt + R` or `Right Alt + R` | World only, no menu open |
+| Open Trash List Menu | `Left Alt + L` or `Right Alt + L` | World only, no menu open |
+| Quick-Add hovered item | `Left Alt + X` or `Right Alt + X` | Inventory page open, item hovered |

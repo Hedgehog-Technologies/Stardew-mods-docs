@@ -1,0 +1,100 @@
+---
+title: "Auto Forager: Automatic Foraging for Stardew Valley"
+sidebarTitle: "Overview"
+description: "Auto Forager automatically collects forageables, shakes trees and bushes, harvests moss, digs artifact spots, and more as you walk around your farm and the world."
+---
+
+Auto Forager eliminates the repetitive clicking of manual foraging by collecting items around you as you move. Walk through a forest, along the beach, or across your farm, and the mod silently gathers everything within your configured radius — seeds, fruits, seasonal ground items, and more — without interrupting your pace. Every item category has its own toggle so you stay in complete control of what gets collected.
+
+<Note>
+  Most individual forage toggles default to **off**. You opt in to exactly what you want Auto Forager to collect rather than having it grab everything by default. Bush shaking, fruit trees, wild tree seeds, artifact spots, mushroom boxes, mushroom logs, tappers, and panning spots are on by default; ground forageables are off.
+</Note>
+
+## Key Features
+
+<CardGroup cols={2}>
+  <Card title="Radius-Based Collection" icon="circle-dot">
+    Scans all tiles within a configurable radius (default: 2, max: 10) every time you take a step. Closer items are always collected first.
+  </Card>
+  <Card title="Per-Item Toggles" icon="toggle-on">
+    Enable or disable collection for each individual item — Salmonberries, Acorns, Spring Onions, and dozens more — independently.
+  </Card>
+  <Card title="Tool-Aware" icon="shovel">
+    Respects tool requirements: ginger and buried roots need a Hoe, moss needs any tool, and ore panning needs a Pan in your inventory.
+  </Card>
+  <Card title="Profession Synergy" icon="star">
+    Works with the Botanist profession for Iridium-quality forage and the Gatherer profession for a 20% double-harvest chance on ground items.
+  </Card>
+  <Card title="Daily Statistics" icon="chart-bar">
+    Logs a full breakdown of everything collected each day — organized by category — to your SMAPI console at day's end.
+  </Card>
+  <Card title="Instant Toggle" icon="keyboard">
+    Press **Left Alt + H** or **Right Alt + H** at any time to turn Auto Forager on or off. Your preference is saved between sessions.
+  </Card>
+</CardGroup>
+
+## What Auto Forager Collects
+
+Auto Forager handles every major forageable category in Stardew Valley. Use the GMCM in-game configuration menu — or edit `config.json` directly — to enable exactly the categories and items you want.
+
+### Wild Trees
+
+Auto Forager shakes mature wild trees to collect their seeds and other drop items. Supported drops include Acorns, Maple Seeds, Pine Cones, Hazelnuts, Coconuts, Golden Coconuts, and Mahogany Seeds. All wild tree seed toggles are **on by default**.
+
+It also harvests **Moss** from mossy trees. Moss harvesting requires any tool to be present in your inventory (configurable). Note that by default, trees adjacent to a Mushroom Log are skipped for moss harvesting — you can disable that filter in the config.
+
+### Fruit Trees
+
+Auto Forager shakes mature fruit trees once they have enough fruit ready. All vanilla fruit trees are enabled by default: Apple, Apricot, Banana, Cherry, Mango, Orange, Peach, and Pomegranate. You can configure how many fruits must be present (1–3) before a tree is shaken.
+
+Custom fruit trees added by other mods are automatically detected and appear in your config menu.
+
+### Bushes
+
+Auto Forager shakes berry bushes and tea bushes when they are in season:
+
+- **Salmonberry bushes** — during Salmonberry season (Spring 15–18), on by default
+- **Blackberry bushes** — during Blackberry season (Fall 8–11), on by default
+- **Tea bushes** — when producing Tea Leaves, on by default
+- **Golden Walnut bushes** — on Ginger Island, off by default
+
+### Ground Forageables
+
+All seasonal ground-spawned items are individually toggleable. These include Spring items (Daffodil, Dandelion, Leek, Wild Horseradish), Summer items (Fiddlehead Fern, Grapes, Spice Berry, Sweet Pea), Fall items (Blackberry, Hazelnut, Wild Plum), and Winter items (Crocus, Crystal Fruit, Holly, Snow Yam, Winter Root). Beach items (Clam, Coral, Mussel, Nautilus Shell, Oyster, Rainbow Shell, Sea Urchin, Seaweed) and desert items (Cactus Fruit, Coconut) are also supported.
+
+Spring Onions and Ginger are included in this category as well. Collecting Ginger (and Snow Yam and Winter Root) requires a Hoe in your inventory when the `RequireHoe` setting is enabled (on by default).
+
+All ground forageable toggles are **off by default** — enable the ones you want.
+
+### Artifact Spots and Seed Spots
+
+Auto Forager automatically digs Artifact Spots (the worm tiles) and Seed Spots as you walk over or near them. Both are **on by default**. A Hoe is required in your inventory (subject to the `RequireHoe` setting).
+
+### Mushroom Boxes and Mushroom Logs
+
+Auto Forager collects ready mushrooms from both Mushroom Boxes and Mushroom Logs placed on your farm. Both are **on by default**.
+
+### Tappers
+
+Auto Forager collects finished products from Tappers and Heavy Tappers (Maple Syrup, Oak Resin, Pine Tar, etc.) as you walk nearby. Tappers are **on by default**.
+
+### Ore Panning Spots
+
+When a panning spot appears in a river or stream, Auto Forager can automatically pan it for you. Ore panning requires a **Pan** in your inventory (configurable via `RequirePan`). Panning spots are **on by default** but need the Pan to be active.
+
+## In-Game Configuration
+
+Install [Generic Mod Config Menu](https://www.nexusmods.com/stardewvalley/mods/5098) to configure Auto Forager from the in-game options screen without ever touching a file. The GMCM menu organizes all toggles by category — Bushes, Forageables, Fruit Trees, Wild Trees — and exposes all general settings like radius, interaction limits, and tool requirements.
+
+Without GMCM, edit `Stardew Valley/Mods/AutoForager/config.json` directly and relaunch the game.
+
+## Download
+
+<CardGroup cols={2}>
+  <Card title="Nexus Mods" icon="arrow-down-to-bracket" href="https://www.nexusmods.com/stardewvalley/mods/7736">
+    Download Auto Forager from Nexus Mods (mod ID 7736).
+  </Card>
+  <Card title="CurseForge" icon="arrow-down-to-bracket" href="https://www.curseforge.com/stardewvalley/mods/auto-forager">
+    Download Auto Forager from CurseForge.
+  </Card>
+</CardGroup>

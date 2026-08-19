@@ -1,0 +1,65 @@
+---
+title: "How Auto Trasher Detects and Removes Inventory Items"
+sidebarTitle: "How It Works"
+description: "Learn how Auto Trasher watches your inventory, plays the trash sound, awards reclamation gold, hides pickup messages, and saves removed items for reclaim."
+---
+
+Understanding how Auto Trasher works under the hood helps you get the most out of it and debug any unexpected behavior. Auto Trasher uses SMAPI's inventory change event to intercept items the instant they enter your bag — long before you ever see them — then removes them, updates your reclaim history, and plays the appropriate sounds and notifications.
+
+## Inventory Hook
+
+Auto Trasher subscribes to SMAPI's `InventoryChanged` event for the local player. Every time your inventory gains a new item, Auto Trasher checks whether that item's **qualified item ID** — for example, `(O)168` for Trash — appears in your Trash List. If it does, the item is immediately removed via the game's own `removeItemFromInventory` method.
+
+<Note>
+  The inventory hook only fires for the local player. In multiplayer, each player's Auto Trasher manages only their own inventory. See the [Multiplayer](#multiplayer) section below.
+</Note>
+
+## Trash Sound and Reclamation Gold
+
+When Auto Trasher removes an item, two things happen in sequence:
+
+1. **Reclamation gold is awarded.** Auto Trasher calls `Utility.getTrashReclamationPrice` — the same function the game's own trash can uses — to calculate any gold you'd earn from recycling the item. If the result is greater than zero, that amount is added to your gold and you hear the coin sound.
+2. **The trashcan sound plays.** The vanilla `"trashcan"` sound cue fires so you always know an item was discarded.
+
+You never lose recycling income just because Auto Trasher removed an item before you could manually trash it.
+
+## HUD Notifications
+
+Auto Trasher produces a HUD message reading **"Automatically trashed [Item]"** with the item's icon and stack count displayed alongside the message. This notification uses a unique message type keyed to the item name, so multiple rapid-fire trashes of the same item don't stack into a single confusing message.
+
+At the same time, Auto Trasher suppresses the standard **"You picked up X"** pickup notification for any item it auto-trashes. Every tick, it scans the active HUD message list and removes any pickup notification whose subject item is on the Trash List — but only if the message is not the Auto Trasher's own "automatically trashed" message. This keeps your HUD clean with exactly one message per auto-trash event.
+
+## Reclaim History
+
+Every item Auto Trasher removes is added to a `LimitedList` — a rolling buffer that holds the most recently trashed items, newest first. The list has a configurable maximum size (default: 10, range: 5–100). When the list is full and a new item is trashed, the oldest entry is dropped automatically.
+
+You can view and recover items from this list on the **Reclaim** tab of the Trash List Menu (open with Alt+L).
+
+## Ignore During Reclaim
+
+When you reclaim an item from the Reclaim tab and it re-enters your inventory, Auto Trasher needs to know not to trash it again immediately. It does this by adding the item reference to an internal `_ignoreItems` list before returning it to your inventory. When the `InventoryChanged` event fires, Auto Trasher checks this list first — if the incoming item is on it, the item is removed from `_ignoreItems` and left in your inventory untouched.
+
+<Tip>
+  The Quick-Add keybind (**Alt+X** while hovering an item in your open inventory) is the fastest way to add an item to your Trash List. The item is added to the list *and* removed from your inventory in one step — no need to open the Trash List Menu.
+</Tip>
+
+## Quick-Add Flow
+
+When you press the Quick-Add keybind (Alt+X) while the inventory page is open and a valid item is hovered:
+
+1. Auto Trasher reads the hovered item's qualified item ID.
+2. If the item is not a standard `Object` type and `AllowAllItems` is `false`, a HUD message tells you the item cannot be added.
+3. If the item is already on the Trash List, a HUD message tells you it's already there.
+4. Otherwise, the qualified ID is appended to the Trash List, the config is saved immediately, and `RemoveItemFromInventory` is called — triggering the trash sound, awarding gold, and saving the item to the reclaim history.
+
+## Toggle Behavior
+
+Pressing the toggle keybind (Alt+R) flips the `_isTrasherActive` boolean. When deactivated, the `InventoryChanged` event handler is **unsubscribed entirely**, meaning zero processing overhead when the trasher is off. Re-activating re-subscribes the handler. A HUD message confirms the state change as either **ACTIVATED** or **DEACTIVATED**.
+
+<Warning>
+  The toggle keybind only works while you are in the world with no menu open. It does not function inside the inventory screen, the Trash List Menu, or any other overlay.
+</Warning>
+
+## Multiplayer
+
+Auto Trasher is entirely client-side. The mod's `InventoryChanged` handler checks `e.IsLocalPlayer` first and exits immediately if the event belongs to another player. Each player in a multiplayer session manages their own Trash List independently — other players are never affected by your configuration.

@@ -1,0 +1,81 @@
+---
+title: "Install Hedgehog Technologies Mods with SMAPI"
+sidebarTitle: "Installation"
+description: "Step-by-step instructions for installing any Hedgehog Technologies mod using SMAPI, the Stardew Modding API, on Windows, Mac, and Linux."
+---
+
+Installing any Hedgehog Technologies mod takes only a few minutes. You need SMAPI — the Stardew Modding API — installed first, then you drop the mod folder into your game's `Mods` directory and launch through SMAPI. Follow the steps below to get set up on Windows, Mac, or Linux.
+
+<Steps>
+  <Step title="Install SMAPI">
+    Download and install SMAPI from [smapi.io](https://smapi.io). SMAPI is the mod loader that all Hedgehog Technologies mods require. Run the SMAPI installer and follow its prompts — it automatically detects your Stardew Valley installation and sets up the launch shortcut for you.
+  </Step>
+  <Step title="Download your mod">
+    Grab the mod you want from either of the official hosting platforms:
+
+    - **Nexus Mods** — requires a free account to download.
+    - **CurseForge** — no account required for manual downloads.
+
+    | Mod | Nexus Mods | CurseForge |
+    |---|---|---|
+    | Auto Forager | [Mod #7736](https://www.nexusmods.com/stardewvalley/mods/7736) | [auto-forager](https://www.curseforge.com/stardewvalley/mods/auto-forager) |
+    | Auto Trasher | [Mod #23663](https://www.nexusmods.com/stardewvalley/mods/23663) | [auto-trasher](https://www.curseforge.com/stardewvalley/mods/auto-trasher) |
+    | Allow Beach Sprinklers | [Mod #7629](https://www.nexusmods.com/stardewvalley/mods/7629) | [allow-beach-sprinklers](https://www.curseforge.com/stardewvalley/mods/allow-beach-sprinklers) |
+    | Full Fishing Bar | [Mod #23006](https://www.nexusmods.com/stardewvalley/mods/23006) | [full-fishing-bar](https://www.curseforge.com/stardewvalley/mods/full-fishing-bar) |
+
+    Always download the latest release for your version of Stardew Valley.
+  </Step>
+  <Step title="Extract and place the mod folder">
+    Unzip the downloaded archive, then move the extracted mod folder into your `Mods` directory. The folder you place inside `Mods` should contain the mod's `.dll` file and `manifest.json` directly — do not nest it inside an extra subfolder.
+
+    <Tabs>
+      <Tab title="Windows">
+        ```
+        %AppData%\StardewValley\Mods
+        ```
+        Open File Explorer, paste that path into the address bar, and press **Enter** to navigate there directly.
+      </Tab>
+      <Tab title="Mac">
+        ```
+        ~/.config/StardewValley/Mods
+        ```
+        Open Finder, press **⌘ + Shift + G**, paste the path, and press **Go**.
+      </Tab>
+      <Tab title="Linux">
+        ```
+        ~/.config/StardewValley/Mods
+        ```
+        Navigate to this path in your file manager or terminal.
+      </Tab>
+    </Tabs>
+
+    After placing the folder, your `Mods` directory should look something like this:
+
+    ```
+    Mods/
+    ├── AutoForager/
+    │   ├── AutoForager.dll
+    │   └── manifest.json
+    └── (other mods...)
+    ```
+  </Step>
+  <Step title="Launch the game through SMAPI">
+    Start Stardew Valley using the SMAPI launcher, not the default Steam or GOG shortcut. SMAPI creates its own launch entry during installation — use that to ensure all your mods load correctly. You'll see SMAPI's console output listing every loaded mod as the game starts up.
+  </Step>
+</Steps>
+
+<Note>
+  **Generic Mod Config Menu (GMCM)** is an optional but highly recommended companion mod. It adds an in-game settings screen where you can configure all Hedgehog Technologies mods without manually editing JSON files. Download it from [Nexus Mods](https://www.nexusmods.com/stardewvalley/mods/5098) and install it the same way. See [Mod Integrations](/compatibility/mod-integrations) for details on what GMCM unlocks for each mod.
+</Note>
+
+<Warning>
+  **Multiplayer:** In a multiplayer session, the **host** must have the mod installed for it to affect the shared farm. Client-side players can also install the mods independently, but farm-wide effects (like sprinkler behavior on the Beach Farm) only apply when the host runs the mod.
+</Warning>
+
+## Updating a Mod
+
+To update any mod to a newer version, delete the old mod folder from your `Mods` directory, download the new release, and place the fresh folder in its place. Your configuration files are stored inside the mod folder, so back up `config.json` before deleting if you want to preserve your settings.
+
+<Tip>
+  Use the [SMAPI log parser](https://smapi.io/log) to diagnose any loading issues. After launching the game, SMAPI writes a log file you can upload to the parser for a clear summary of what loaded, what failed, and why.
+</Tip>

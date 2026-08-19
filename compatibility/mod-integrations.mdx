@@ -1,0 +1,65 @@
+---
+title: "Compatible Mods and Integrations for Auto Forager"
+sidebarTitle: "Mod Integrations"
+description: "Third-party mods that integrate with Hedgehog Technologies mods, including Generic Mod Config Menu, Bush Bloom, Custom Bush, Farm Type Manager, and more."
+---
+
+HedgeTech mods are designed to work well alongside the broader Stardew Valley modding ecosystem. Several third-party mods unlock additional features or provide a more convenient configuration experience when installed alongside HedgeTech mods. All integrations are detected automatically — you never need to edit a config file to activate them.
+
+<Note>
+  Every integration listed on this page is **optional**. Auto Forager works fully on its own without any of these mods installed. When a supported mod is present in your `Stardew Valley/Mods` folder, Auto Forager detects it automatically and activates the corresponding integration.
+</Note>
+
+## Universal Integrations
+
+These integrations apply to all HedgeTech mods.
+
+<Card title="Generic Mod Config Menu" icon="sliders" href="https://www.nexusmods.com/stardewvalley/mods/5098">
+  **By spacechase0** — Provides an in-game configuration UI for every mod that supports it. Install GMCM to configure all HedgeTech mods directly from the main menu, without manually editing any `config.json` files. This is the recommended way to manage mod settings.
+</Card>
+
+When GMCM is installed, a new **Mod Options** button appears on the Stardew Valley main menu. Select any HedgeTech mod from the list to view and change all of its settings with live descriptions and input validation.
+
+## Auto Forager Integrations
+
+The following mods extend what Auto Forager can detect and automatically collect. Each integration expands the set of forageable sources Auto Forager recognizes, so you collect more items without any extra effort.
+
+<CardGroup cols={2}>
+  <Card title="Bush Bloom Mod" icon="leaf" href="https://www.nexusmods.com/stardewvalley/mods/15792">
+    **By NCarigon** — Minimum version: **1.1.9** (`NCarigon.BushBloomMod`)
+
+    Auto Forager reads the custom bush bloom schedules defined by Bush Bloom Mod. Any bush configured to bloom on a custom schedule is automatically included in Auto Forager's harvest logic for the correct in-game dates.
+  </Card>
+
+  <Card title="Custom Bush" icon="tree" href="https://www.nexusmods.com/stardewvalley/mods/20619">
+    **By furyx639** — Minimum version: **1.0.4** (`furyx639.CustomBush`)
+
+    Auto Forager identifies bush instances created by Custom Bush and retrieves their full drop definitions. Any item a custom bush is configured to produce will be harvested automatically when the bush is ready.
+  </Card>
+
+  <Card title="Farm Type Manager" icon="map" href="https://www.nexusmods.com/stardewvalley/mods/3231">
+    **By Esca** — Minimum version: **1.20.0** (`Esca.FarmTypeManager`)
+
+    Auto Forager pulls the forageable item IDs registered across all Farm Type Manager content packs. Any forage item that FTM can spawn on your farm or in custom locations is recognized and collected automatically.
+  </Card>
+
+  <Card title="Wild Flowers Reimagined" icon="seedling" href="https://www.nexusmods.com/stardewvalley/mods/21498">
+    **By jpp** — Minimum version: **3.3.3** (`jpp.WildFlowersReimagined`)
+
+    Auto Forager gains the ability to harvest wild flower grass tiles added by this mod. Walk through blooming flower tiles to collect them automatically, just like standard forageables.
+  </Card>
+</CardGroup>
+
+### SpaceCore
+
+If **SpaceCore** (`spacechase0.SpaceCore`) is installed, Auto Forager reads its `SpawnableDefinitions` to discover additional forageable items registered through SpaceCore's extensibility system. No minimum version is enforced — any installed version is supported.
+
+## Extending Auto Forager with Content Packs
+
+Beyond the automatic integrations above, Auto Forager supports a **Content Pack** system that lets any mod author register custom forageable items, fruit trees, and wild trees directly. Content packs can also categorize items so they appear as distinct groups in the GMCM configuration menu.
+
+If you are a mod author adding new forageable content to the game, creating a content pack is the best way to ensure Auto Forager recognizes and correctly categorizes your items out of the box.
+
+<Card title="Auto Forager Content Pack Guide" icon="book-open" href="/auto-forager/content-packs/overview">
+  Learn how to create a content pack that registers your custom forageables, fruit trees, and wild trees with Auto Forager.
+</Card>

@@ -1,0 +1,127 @@
+---
+title: "Managing Your Auto Trasher Trash List in Stardew Valley"
+sidebarTitle: "Trash List"
+description: "Learn how to add, view, and remove items from Auto Trasher's Trash List using the in-game menu, the Quick-Add keybind, or by editing config.json directly."
+---
+
+Your Trash List is the core of Auto Trasher — it's the set of item IDs that get automatically removed from your inventory the moment they arrive. You can manage the list in three ways: the Quick-Add keybind (fastest, no menu required), the in-game Trash List Menu (visual, easy to browse), or by editing `config.json` directly (useful for bulk changes or sharing configurations).
+
+## Method 1: Quick-Add Keybind (Fastest)
+
+The Quick-Add keybind lets you banish an item to the Trash List without leaving your inventory screen.
+
+<Steps>
+  <Step title="Open Your Inventory">
+    Press **E** (or your configured inventory button) to open the inventory screen.
+  </Step>
+  <Step title="Hover Over the Item">
+    Move your cursor over any item you want to automatically trash in the future.
+  </Step>
+  <Step title="Press the Quick-Add Keybind">
+    Press **Left Alt + X** or **Right Alt + X**. A HUD message confirms the item was added: **"[Item] added to Trash List"**.
+  </Step>
+  <Step title="Item Is Removed Immediately">
+    The item is added to your Trash List *and* removed from your inventory in one action. The trashcan sound plays and the item enters your reclaim history.
+  </Step>
+</Steps>
+
+<Tip>
+  This is the recommended way to add items on the fly. You can do it mid-session without pausing to open any separate menu.
+</Tip>
+
+<Note>
+  By default, only standard Object-type items (from `Data/Objects`) can be added this way. If you want to add tools, clothing, furniture, or other item types, set `AllowAllItems` to `true` in your config first.
+</Note>
+
+## Method 2: Trash List Menu
+
+The Trash List Menu gives you a full visual interface for managing your list and recovering recently trashed items.
+
+<Steps>
+  <Step title="Open the Trash List Menu">
+    Press **Left Alt + L** or **Right Alt + L** from anywhere in the world (not inside another menu). The Auto Trasher Menu opens with two tabs: **Trash List** and **Reclaim List**.
+  </Step>
+  <Step title="View Your Trash List">
+    The **Trash List** tab displays every item currently being auto-trashed. Scroll through the list if you have more than 10 entries.
+  </Step>
+  <Step title="Remove an Item">
+    Click the button next to any item you want to stop auto-trashing. A confirmation dialog appears: **"Are you sure you want to remove [Item] from the Trash List?"** Confirm to remove it, or cancel to keep it.
+  </Step>
+  <Step title="Switch to the Reclaim Tab">
+    Click the **Reclaim List** tab to view recently trashed items. See the [Reclaim System](/auto-trasher/reclaim-system) page for full details on recovering items.
+  </Step>
+</Steps>
+
+## Method 3: Editing config.json
+
+For bulk changes, sharing your setup with others, or adding items whose IDs you already know, edit the config file directly.
+
+<Steps>
+  <Step title="Locate the Config File">
+    Navigate to `Stardew Valley/Mods/AutoTrasher/config.json` in your file manager or text editor.
+  </Step>
+  <Step title="Edit the TrashList Array">
+    Add or remove qualified item IDs in the `TrashList` array. Each entry must be a string with the type prefix included.
+  </Step>
+  <Step title="Save and Reload">
+    Save the file. The changes take effect the next time you load a save or restart the game.
+  </Step>
+</Steps>
+
+### Qualified Item ID Format
+
+Every item ID in the Trash List must use the **qualified** format, which includes a type prefix in parentheses:
+
+| Prefix | Item Type |
+|---|---|
+| `(O)` | Object (standard items, fish, crops, etc.) |
+| `(T)` | Tool |
+| `(W)` | Weapon |
+| `(F)` | Furniture |
+| `(B)` | Boots |
+| `(H)` | Hat |
+| `(C)` | Clothing |
+
+<Warning>
+  IDs without a type prefix (e.g., `"168"` instead of `"(O)168"`) are **not valid** and will be automatically removed from the list when the mod loads. Always include the prefix.
+</Warning>
+
+### Default TrashList
+
+The following entries make up the default Trash List on a fresh install:
+
+```json
+"TrashList": [
+  "(O)168",
+  "(O)169",
+  "(O)170",
+  "(O)171",
+  "(O)172",
+  "(O)747",
+  "(O)748"
+]
+```
+
+| Qualified ID | Item Name |
+|---|---|
+| `(O)168` | Trash |
+| `(O)169` | Driftwood |
+| `(O)170` | Broken Glasses |
+| `(O)171` | Broken CD |
+| `(O)172` | Soggy Newspaper |
+| `(O)747` | Rotten Plant |
+| `(O)748` | Rotten Plant |
+
+### AllowAllItems Setting
+
+By default, only standard Object-type items (those defined in `Data/Objects`) can be added to the Trash List. This prevents accidentally trashing tools, weapons, or other valuable non-Object items.
+
+To remove this restriction and allow any item type on the Trash List, set `AllowAllItems` to `true` in `config.json`:
+
+```json
+"AllowAllItems": true
+```
+
+<Warning>
+  Use `AllowAllItems` with care. With this setting enabled, the Quick-Add keybind will accept tools, weapons, clothing, and furniture — item types that are typically irreplaceable or expensive. Make sure your Reclaim List is large enough to catch any mistakes.
+</Warning>

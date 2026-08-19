@@ -1,0 +1,67 @@
+---
+title: "Full Fishing Bar: Make Fishing Easier in Stardew Valley"
+sidebarTitle: "Overview"
+description: "Full Fishing Bar resizes the bobber bar in the fishing mini-game up to 100% of the track, making it trivially easy — or just a little easier — to catch every fish."
+---
+
+Stardew Valley's fishing mini-game challenges you to hold a bobber bar over a moving fish icon for long enough to fill a catch meter. For some players that tension is enjoyable; for others it's a barrier — whether due to accessibility needs, hardware limitations, or simply wanting to focus on other parts of the game. Full Fishing Bar lets you choose exactly how large that bobber bar is, from a modest bump up to the full height of the track, so you stay in control of the difficulty.
+
+## Key Features
+
+<CardGroup cols={2}>
+  <Card title="Adjustable Bar Size" icon="sliders">
+    Set the bobber bar to any size between 10% and 100% of the fishing track. The default is 100%, which fills the entire track and makes catching any fish effortless.
+  </Card>
+  <Card title="Auto-Hook" icon="fish">
+    Optionally have the game automatically trigger the hook the moment a fish nibbles, so you never miss the bite window. Controller rumble fires when auto-hook activates.
+  </Card>
+  <Card title="Cork Bobber Mode" icon="circle">
+    Restrict bar resizing to only activate when a Cork Bobber (item ID 695) is attached to your rod, turning the upgrade into a deliberate tool rather than a permanent change.
+  </Card>
+  <Card title="Boss Fish Exception" icon="shield">
+    Keep boss fish encounters at full difficulty even while the bar is enlarged for all other fish — preserving a meaningful challenge for the game's toughest catches.
+  </Card>
+</CardGroup>
+
+## Master On/Off Toggle
+
+A top-level `IsEnabled` setting lets you switch the entire mod on or off without uninstalling it. Toggle it via the in-game GMCM menu or edit `config.json` directly, then restart the game if you're not using GMCM.
+
+## Why Use This Mod?
+
+Full Fishing Bar is built for accessibility and casual play. It occupies a useful middle ground between vanilla difficulty and instant-catch mods:
+
+<Tabs>
+  <Tab title="Accessibility">
+    The mini-game's timing demands can be genuinely difficult for players with motor impairments, hand fatigue, or controllers that lack precision. A larger bar reduces or removes that physical barrier while still letting you go through the fishing animation and spend in-game time at the water.
+  </Tab>
+  <Tab title="Casual Play">
+    If you'd rather spend your in-game day farming, mining, or building relationships, fishing stops feeling like an interruption. You still cast the rod, still wait for bites, and still see the mini-game — you just win it reliably.
+  </Tab>
+  <Tab title="Multiplayer Discretion">
+    Unlike instant-catch mods, which resolve fishing in a fraction of a second and are obvious to other players, Full Fishing Bar lets you fish at a normal pace. You can even cancel the mini-game early to appear as if you missed the catch.
+  </Tab>
+</Tabs>
+
+## Auto-Hook and Controller Rumble
+
+When `AutoHook` is enabled, the mod monitors your rod every game tick. The moment a fish nibbles, it triggers the hook on your behalf — you never need to watch the screen and click in time. If you're playing with a controller, the mod fires a short rumble pulse (`0.95f` intensity, 200 ms) as tactile feedback when the auto-hook activates, so you know a fish has been caught even if you're looking away.
+
+<Note>
+  Auto-Hook does not activate if your rod already has the Auto-Hook enchantment from the Enchanter's Bundle, since that enchantment handles the same behaviour natively.
+</Note>
+
+## Multiplayer
+
+Full Fishing Bar is player-specific. Each player who wants the assistance must have the mod installed on their own machine. Installing it on the host alone does not affect farmhand fishing.
+
+## Download
+
+<CardGroup cols={2}>
+  <Card title="Nexus Mods" icon="download" href="https://www.nexusmods.com/stardewvalley/mods/23006">
+    Download Full Fishing Bar from Nexus Mods (mod #23006).
+  </Card>
+  <Card title="CurseForge" icon="download" href="https://www.curseforge.com/stardewvalley/mods/full-fishing-bar">
+    Download Full Fishing Bar from CurseForge.
+  </Card>
+</CardGroup>

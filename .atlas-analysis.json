@@ -1,0 +1,123 @@
+{
+  "projectType": "general",
+  "projectName": "Hedgehog Technologies Stardew Mods",
+  "projectDescription": "A collection of quality-of-life SMAPI mods for Stardew Valley that automate foraging, manage inventory trash, enable Beach Farm sprinklers, and simplify the fishing mini-game.",
+  "theme": "maple",
+  "primaryColor": "#8b410e",
+  "lightColor": "#f7ba88",
+  "darkColor": "#070605",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Getting Started",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "introduction",
+              "installation"
+            ]
+          },
+          {
+            "group": "Mod Compatibility",
+            "pages": [
+              "compatibility/smapi",
+              "compatibility/mod-integrations"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Auto Forager",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "auto-forager/overview",
+              "auto-forager/how-it-works"
+            ]
+          },
+          {
+            "group": "Configuration",
+            "pages": [
+              "auto-forager/general-settings",
+              "auto-forager/forage-toggles",
+              "auto-forager/keybinds"
+            ]
+          },
+          {
+            "group": "Content Packs",
+            "pages": [
+              "auto-forager/content-packs/overview",
+              "auto-forager/content-packs/available-packs",
+              "auto-forager/content-packs/creating-content-packs"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Auto Trasher",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "auto-trasher/overview",
+              "auto-trasher/how-it-works"
+            ]
+          },
+          {
+            "group": "Configuration",
+            "pages": [
+              "auto-trasher/trash-list",
+              "auto-trasher/reclaim-system",
+              "auto-trasher/keybinds-and-settings"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Other Mods",
+        "groups": [
+          {
+            "group": "Allow Beach Sprinklers",
+            "pages": [
+              "allow-beach-sprinklers/overview",
+              "allow-beach-sprinklers/usage"
+            ]
+          },
+          {
+            "group": "Full Fishing Bar",
+            "pages": [
+              "full-fishing-bar/overview",
+              "full-fishing-bar/configuration"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Auto Forager: automatically collects forageable items, seeds, fruits, moss, and more as the player walks nearby",
+    "Configurable forage radius with per-item and per-category toggle controls",
+    "Mod integrations for Bush Bloom, Custom Bush, Farm Type Manager, Wild Flowers Reimagined, SpaceCore, and GMCM",
+    "Auto Forager Content Pack system allowing any mod author to register custom forageable items",
+    "17 first-party content packs covering popular mod expansions (SVE, Cornucopia, Ridgeside Village, etc.)",
+    "Auto Trasher: automatically discards user-defined items on pickup with full reclaim history",
+    "Trash List management UI with scrollable item list and confirmation dialogs",
+    "Reclaim system recovers recently auto-trashed items at the vanilla trash reclamation price",
+    "Allow Beach Sprinklers: enables sprinkler functionality on the Beach Farm layout",
+    "Full Fishing Bar: resizes the fishing bobber bar up to 100% and optionally auto-hooks nibbling fish",
+    "Generic Mod Config Menu (GMCM) support across all mods for in-game configuration",
+    "Multilingual support: up to 12 locales across all mods"
+  ],
+  "publicApiSurface": [
+    "Auto Forager config.json: AutoForagingEnabled, ToggleForagerKeybind, UsePlayerMagnetism, ShakeDistance, FruitsReadyToShake, MaxInteractionsPerMove, RequireHoe, RequireToolMoss, RequirePan, IgnoreMushroomLogTrees, ForageArtifactSpots, ForageSeedSpots, ForageMushroomBoxes, ForageMushroomLogs, ForageTappers, ForagePanningSpots",
+    "Auto Forager ForageToggles: BushToggles, ForagingToggles, FruitTreeToggles, WildTreeToggles, FlowerGrassToggles (per-item dictionaries)",
+    "Auto Forager Content Pack schema: content.json with Category, Forageables[], FruitTrees[], WildTrees[], IgnoredItems[]",
+    "Auto Forager asset editing: custom fields HedgehogTechnologies.AutoForager.Forageable and HedgehogTechnologies.AutoForager.Category injected into Data/Objects, Data/FruitTrees, Data/WildTrees",
+    "Auto Trasher config.json: ToggleTrasherKeybind, OpenTrashMenuKeybind, AddTrashKeybind, ReclaimableItemCount, AllowAllItems, TrashList",
+    "Full Fishing Bar config.json: IsEnabled, OnlyCorkBobber, BarSizePercentageInt, ExceptBossFish, AutoHook",
+    "Allow Beach Sprinklers: zero-config, automatic on Beach Farm (farm layout #6)",
+    "Keybinds: Auto Forager toggle (LeftAlt+H / RightAlt+H), Auto Trasher toggle (LeftAlt+R / RightAlt+R), Trash Menu (LeftAlt+L / RightAlt+L), Quick-Add to Trash (LeftAlt+X / RightAlt+X)"
+  ]
+}

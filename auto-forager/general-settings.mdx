@@ -1,0 +1,146 @@
+---
+title: "Auto Forager General Configuration Settings Reference"
+sidebarTitle: "General Settings"
+description: "Reference for all Auto Forager general settings: forage radius, interaction limits, tool requirements, mushroom log behavior, and master toggle."
+---
+
+Auto Forager stores its settings in a `config.json` file that lives at `Stardew Valley/Mods/AutoForager/config.json`. You can edit this file directly in any text editor while the game is closed, or adjust every setting in-game using the [Generic Mod Config Menu](https://www.nexusmods.com/stardewvalley/mods/5098) (GMCM). When GMCM is installed, open the in-game menu, navigate to **Mod Settings**, select **Auto Forager**, and you will find all of the settings below on the **General Options** tab, with per-item forage toggles accessible from the **Categorized Toggles** section.
+
+<Note>
+  Auto Forager creates `config.json` automatically the first time you launch the game with the mod installed. You do not need to create this file by hand — simply launch once and then edit the generated file if you prefer manual configuration.
+</Note>
+
+## Master Toggle
+
+<ParamField body="AutoForagingEnabled" type="bool" default="true">
+  The master on/off switch for the entire mod. Set this to `false` to suspend all automatic foraging without uninstalling the mod. You can also toggle this at any time during play using the [keybind](/auto-forager/keybinds).
+</ParamField>
+
+## Radius and Distance
+
+<ParamField body="UsePlayerMagnetism" type="bool" default="false">
+  When enabled, Auto Forager uses your character's current magnetism radius (the same radius that pulls items toward you) to determine how far away it scans for forageables. Enabling this setting overrides the `ShakeDistance` value entirely, so the two settings are mutually exclusive. If you have Luremaster or other profession bonuses that increase magnetism range, enabling this setting lets Auto Forager benefit from those bonuses automatically.
+</ParamField>
+
+<ParamField body="ShakeDistance" type="int" default="2">
+  The tile radius Auto Forager scans around your character when `UsePlayerMagnetism` is `false`. A value of `2` means every tile within two tiles of your position is checked each time you move. Increase this to collect from trees and bushes further away; be aware that higher values scan more tiles per step and may noticeably affect performance in areas dense with trees.
+
+  **Range:** `2` – `10`
+</ParamField>
+
+## Interaction Throttling
+
+<ParamField body="MaxInteractionsPerMove" type="int | null" default="null (auto)">
+  The maximum number of foraging interactions Auto Forager performs each time your character takes a step. Setting this to `null` (or `0` in the GMCM slider) activates the automatic scaling formula:
+
+  ```
+  max interactions = 30 − (ShakeDistance × 2)
+  ```
+
+  Examples under auto-scaling:
+
+  | ShakeDistance | Auto Max Interactions |
+  |:---:|:---:|
+  | 2 | 26 |
+  | 5 | 20 |
+  | 10 | 10 |
+
+  If you experience lag or stuttering when walking through orchards or berry fields, reduce this value manually. Any explicit value must fall between `5` and `50`.
+
+  **Range when set manually:** `5` – `50`
+</ParamField>
+
+## Fruit Tree Behavior
+
+<ParamField body="FruitsReadyToShake" type="int" default="1">
+  The minimum number of fruits that must be hanging on a fruit tree before Auto Forager shakes it. The default of `1` means any tree with at least one ready fruit is shaken immediately. Raise this to `2` or `3` if you prefer to let fruit accumulate before harvesting.
+
+  **Range:** `1` – `3`
+</ParamField>
+
+## Tool Requirements
+
+These settings mirror Stardew Valley's own tool-gating logic. Disable them only if you want Auto Forager to act regardless of what is in your inventory.
+
+<ParamField body="RequireHoe" type="bool" default="true">
+  When enabled, Auto Forager only digs up Ginger roots, Artifact Spots, and Seed Spots if you have a Hoe somewhere in your inventory. Disable this if you want those items collected even without a Hoe on hand.
+</ParamField>
+
+<ParamField body="RequireToolMoss" type="bool" default="true">
+  When enabled, Auto Forager only harvests Moss from trees if you have any tool or melee weapon in your inventory. This reflects the game's own requirement that you equip something to scrape moss. Disable this to collect Moss unconditionally.
+</ParamField>
+
+<ParamField body="RequirePan" type="bool" default="true">
+  When enabled, Auto Forager only works ore panning spots if you have a Pan in your inventory. Disable this if you want panning spots interacted with even when the Pan is in a chest.
+</ParamField>
+
+## Mushroom Log Behavior
+
+<ParamField body="IgnoreMushroomLogTrees" type="bool" default="true">
+  When enabled, Auto Forager skips harvesting Moss from any tree within three tiles of a Mushroom Log. Moss on those trees feeds the Mushroom Log's production, so stripping it prevents the log from generating mushrooms efficiently. Disable this setting only if you specifically want to collect all Moss regardless of nearby logs.
+</ParamField>
+
+## Special Object Foraging
+
+These flags control whether Auto Forager interacts with special objects that require dedicated actions rather than simple pickup.
+
+<ParamField body="ForageArtifactSpots" type="bool" default="true">
+  Auto-dig Artifact Spots (the wiggling worms on the ground) to collect buried items. Requires a Hoe if `RequireHoe` is enabled.
+</ParamField>
+
+<ParamField body="ForageSeedSpots" type="bool" default="true">
+  Auto-dig Seed Spots to collect buried seeds. Also requires a Hoe when `RequireHoe` is enabled.
+</ParamField>
+
+<ParamField body="ForageMushroomBoxes" type="bool" default="true">
+  Auto-collect mushrooms from placed Mushroom Boxes when they are ready.
+</ParamField>
+
+<ParamField body="ForageMushroomLogs" type="bool" default="true">
+  Auto-harvest mushrooms from Mushroom Logs when they have a ready yield.
+</ParamField>
+
+<ParamField body="ForageTappers" type="bool" default="true">
+  Auto-collect tree byproducts (syrup, resin, tar, etc.) from Tappers and Heavy Tappers placed on wild trees.
+</ParamField>
+
+<ParamField body="ForagePanningSpots" type="bool" default="true">
+  Auto-work ore panning spots (the glittering patches in rivers and streams). Requires a Pan if `RequirePan` is enabled.
+</ParamField>
+
+## Diagnostics
+
+<ParamField body="ElevateDebugLogs" type="bool" default="false">
+  When enabled, Auto Forager promotes its internal debug messages from TRACE level to DEBUG level, making them visible in the SMAPI console. Enable this when troubleshooting unexpected behavior or confirming that a specific item type is being detected. Leave it off during normal play to keep the console uncluttered.
+</ParamField>
+
+## Example config.json
+
+Below is a minimal `config.json` showing the general settings at their defaults. The `ForageToggles` section is described separately on the [Forage Toggles](/auto-forager/forage-toggles) page.
+
+```json
+{
+  "AutoForagingEnabled": true,
+  "ToggleForagerKeybind": "LeftAlt + H, RightAlt + H",
+  "UsePlayerMagnetism": false,
+  "ShakeDistance": 2,
+  "FruitsReadyToShake": 1,
+  "MaxInteractionsPerMove": null,
+  "RequireHoe": true,
+  "RequireToolMoss": true,
+  "RequirePan": true,
+  "IgnoreMushroomLogTrees": true,
+  "ForageArtifactSpots": true,
+  "ForageSeedSpots": true,
+  "ForageMushroomBoxes": true,
+  "ForageMushroomLogs": true,
+  "ForageTappers": true,
+  "ForagePanningSpots": true,
+  "ElevateDebugLogs": false,
+  "ForageToggles": { }
+}
+```
+
+<Tip>
+  After editing `config.json` manually, save the file and launch the game normally. SMAPI reads the config at startup, so you do not need to take any extra steps. If you make a mistake and the file fails to parse, Auto Forager falls back to its defaults and logs a warning in the SMAPI console.
+</Tip>

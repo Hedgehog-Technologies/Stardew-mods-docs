@@ -1,0 +1,70 @@
+---
+title: "Using Sprinklers on the Beach Farm with Allow Beach Sprinklers"
+sidebarTitle: "Usage"
+description: "After installing Allow Beach Sprinklers, sprinklers work automatically on sand tiles. Learn about coverage, all sprinkler types, and multiplayer considerations."
+---
+
+Getting the most out of the Beach Farm means planning your sprinkler layout around its distinctive coastal shape. Allow Beach Sprinklers handles the technical side automatically — every sprinkler type works, Pressure Nozzle upgrades apply normally, and there is nothing to configure. This guide helps you understand the practical details so you can irrigate your sandy fields efficiently from day one.
+
+<Note>
+  Allow Beach Sprinklers has no settings and requires no configuration beyond installation. Just drop the mod folder into your `Stardew Valley/Mods` directory and launch the game.
+</Note>
+
+## All Sprinkler Types Work
+
+Every sprinkler available in the game functions normally on Beach Farm sand tiles after installing this mod.
+
+<CardGroup cols={2}>
+  <Card title="Basic Sprinkler" icon="droplet">
+    Waters the 4 tiles directly adjacent (up, down, left, right) to the sprinkler. Affordable early-game, but limited reach on irregular sandy patches.
+  </Card>
+  <Card title="Quality Sprinkler" icon="droplets">
+    Waters all 8 surrounding tiles (a 3×3 area). A strong mid-game option for covering larger rectangular sandy sections.
+  </Card>
+  <Card title="Iridium Sprinkler" icon="star">
+    Waters a full 5×5 square (24 tiles) around the sprinkler. The most powerful option and especially effective at covering the Beach Farm's wide, irregular sandy terrain.
+  </Card>
+  <Card title="Modded Sprinklers" icon="puzzle">
+    Any sprinkler added by other SMAPI mods also benefits from this patch, since the fix operates at the tile property level rather than targeting specific item IDs.
+  </Card>
+</CardGroup>
+
+## Pressure Nozzle Upgrade
+
+The Pressure Nozzle attachment works exactly as expected on Beach Farm sand. Attach a Pressure Nozzle to any Quality or Iridium Sprinkler to extend its watering range by 1 tile in each direction. Your upgraded sprinklers water the full extended area without any interference from this mod.
+
+## When the Patch Takes Effect
+
+The mod applies its fix at the start of each in-game day, triggered by the `DayStarted` event. This means:
+
+<Steps>
+  <Step title="Day begins">
+    The mod patches all sand tiles on the Beach Farm to allow sprinkler watering.
+  </Step>
+  <Step title="Sprinklers water your crops">
+    All placed sprinklers run their watering logic as normal, covering the tiles within their range.
+  </Step>
+  <Step title="Place new sprinklers any time">
+    You can place new sprinklers during the day. They will begin watering from the **next** morning, once the daily patch runs again.
+  </Step>
+</Steps>
+
+## Layout Tips for the Beach Farm
+
+The Beach Farm's sandy area follows the coastline rather than forming a neat rectangle, which makes sprinkler placement a bit more of a puzzle than on other farms. Keep these tips in mind:
+
+<Accordion title="Prioritise Iridium Sprinklers for awkward corners">
+  The Beach Farm has peninsulas and inlets of sand that resist efficient grid-based layouts. A single Iridium Sprinkler covers a full 5×5 area, making it far more forgiving than trying to fill irregular shapes with Basic Sprinklers. Invest in Iridium as quickly as you can.
+</Accordion>
+
+<Accordion title="Use Quality Sprinklers in denser mid-sections">
+  Where the sandy area widens into a more regular block, Quality Sprinklers can be arranged in an overlapping grid to achieve near-complete coverage at a lower resource cost than Iridium.
+</Accordion>
+
+<Accordion title="Leave walking paths between sprinklers">
+  Plan at least one tile of open path through your sprinkler grid so you can reach all your crops for harvesting without hopping over equipment.
+</Accordion>
+
+<Accordion title="Pair with Junimo Huts for late-game efficiency">
+  Once you have Iridium Sprinklers covering your sandy plots, Junimo Huts let you skip manual harvesting entirely. The combination of automatic watering and automatic harvesting makes the Beach Farm highly efficient in the late game.
+</Accordion>

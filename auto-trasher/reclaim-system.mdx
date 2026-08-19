@@ -1,0 +1,92 @@
+---
+title: "Recovering Items with the Auto Trasher Reclaim System"
+sidebarTitle: "Reclaim System"
+description: "Auto Trasher saves a history of auto-trashed items so you can recover them. Learn how to use the reclaim list, set its size, and understand reclaim costs."
+---
+
+Auto Trasher's reclaim system is your safety net. Every item the mod removes from your inventory is saved to a rolling history, so if something valuable accidentally ends up on your Trash List, you can get it back. The reclaim system is built into the Trash List Menu and requires no extra configuration to use.
+
+## What Is the Reclaim List?
+
+Every time Auto Trasher removes an item from your inventory, it saves a reference to that item at the front of a rolling history called the **Reclaim List**. This list holds up to 10 entries by default, ordered from newest to oldest. Once the list is full, adding a new item pushes the oldest entry out permanently — it cannot be recovered after that point.
+
+<Note>
+  The Reclaim List is held in memory during your play session. If you quit to the main menu or close the game, the reclaim history is cleared. Recover important items before ending your session.
+</Note>
+
+## Recovering an Item
+
+<Steps>
+  <Step title="Open the Trash List Menu">
+    Press **Left Alt + L** or **Right Alt + L** from the world (no other menu open). The Auto Trasher Menu appears.
+  </Step>
+  <Step title="Switch to the Reclaim List Tab">
+    Click the **Reclaim List** tab on the left side of the menu. You'll see all items currently available to reclaim, displayed with their name and stack count.
+  </Step>
+  <Step title="Click the Reclaim Button">
+    Click the reclaim button next to the item you want to recover. A confirmation dialog appears: **"Are you sure you want to reclaim [Item] from the Trash?"**
+  </Step>
+  <Step title="Confirm the Reclaim">
+    Click **Yes** to confirm. If you have enough gold and a free inventory slot, the item is returned to your inventory immediately.
+  </Step>
+</Steps>
+
+## Reclaim Cost
+
+Reclaiming an item is not always free. Auto Trasher uses the same `Utility.getTrashReclamationPrice` calculation the vanilla trash can uses. If that price is greater than zero, the gold is **deducted from your wallet** when you confirm the reclaim.
+
+- If you **don't have enough gold**, the reclaim is cancelled and a HUD message tells you: **"Not enough funds to reclaim [Item]; Cost: Xg"**.
+- If the item has **no reclamation price** (i.e., the game would award zero gold for trashing it), reclaiming it is free.
+
+<Tip>
+  Items trashed automatically still grant you the reclamation gold at the moment of trashing (if applicable). Think of the reclaim cost as buying the item back at the same price you were paid. If the item had no reclamation value, you get it back for free.
+</Tip>
+
+## Free Inventory Space Required
+
+You need **at least one free inventory slot** to reclaim an item. If your inventory is completely full, the reclaim fails and a HUD message appears: **"Inventory unable to reclaim [Item]"**. Free up a slot and try again.
+
+## Ignore-on-Reclaim Protection
+
+When a reclaimed item re-enters your inventory, Auto Trasher temporarily marks it as ignored so it isn't immediately trashed again. The item is added to an internal ignore list before being placed in your inventory, and removed from that list the moment the `InventoryChanged` event fires for it. This happens transparently — you don't need to do anything special.
+
+## History Limit and the ReclaimableItemCount Setting
+
+The maximum number of items the Reclaim List can hold is controlled by the `ReclaimableItemCount` config setting.
+
+<ParamField path="ReclaimableItemCount" type="integer" default="10">
+  The maximum number of auto-trashed items to keep in the reclaim history. Must be between 5 and 100. When the list is full and a new item is trashed, the oldest entry is dropped permanently.
+</ParamField>
+
+### Changing ReclaimableItemCount via GMCM
+
+If you have [Generic Mod Config Menu](https://www.nexusmods.com/stardewvalley/mods/5098) installed:
+
+<Steps>
+  <Step title="Open the In-Game Options">
+    Press **Escape** to open the game menu and navigate to **Options**.
+  </Step>
+  <Step title="Find Auto Trasher">
+    Scroll to the **Auto Trasher** section in the mod list.
+  </Step>
+  <Step title="Adjust the Slider">
+    Use the **Maximum Reclaimable Item Amount** slider to set your preferred history size between 5 and 100.
+  </Step>
+  <Step title="Save">
+    Close the GMCM menu. The new limit takes effect immediately, and the reclaim list is resized to match.
+  </Step>
+</Steps>
+
+### Changing ReclaimableItemCount via config.json
+
+Open `Stardew Valley/Mods/AutoTrasher/config.json` in a text editor and update the value:
+
+```json
+"ReclaimableItemCount": 25
+```
+
+Save the file and restart your game (or reload your save) for the change to take effect.
+
+<Accordion title="When should I increase ReclaimableItemCount?">
+  Increase this value if you frequently trash items in bulk — for example, during a long fishing session or a deep mine run — and want a longer window to recover anything that slipped through. Setting it to 50–100 gives you a comfortable buffer for active play sessions. Keep in mind the list is cleared when you quit to the main menu, so an extremely large value only helps within a single session.
+</Accordion>
